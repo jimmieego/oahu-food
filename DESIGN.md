@@ -104,6 +104,7 @@ rounded:
   toast: "16px"
   panel: "14px"
   home-pin: "9px"
+  highlight: "3px"
   round: "50%"
 spacing:
   xs: "4px"
@@ -162,6 +163,15 @@ components:
     backgroundColor: "{colors.card-white}"
     textColor: "{colors.deep-channel-ink}"
     rounded: "{rounded.popup}"
+  search-field:
+    backgroundColor: "{colors.card-white}"
+    textColor: "{colors.deep-channel-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.pill}"
+    height: "44px"
+  search-highlight:
+    textColor: "{colors.deep-channel-ink}"
+    rounded: "{rounded.highlight}"
   status-toast:
     backgroundColor: "{colors.deep-channel-ink}"
     textColor: "{colors.shore-mist}"
@@ -196,7 +206,7 @@ A restrained palette of cool sea neutrals, one deep teal accent, and nine muted 
 
 ### Primary
 
-- **Lagoon Teal** (`lagoon-teal`): the primary button ("Show on map"), the "See details" button in map popups, the address link, the "About this list" control, map control icons, the "Ready to use offline" check, and the focus ring. At night it becomes a lighter lagoon (`lagoon-teal-night`) with dark text on it (`on-lagoon-night`).
+- **Lagoon Teal** (`lagoon-teal`): the primary button ("Show on map"), the "See details" button in map popups, the address link, the "About this list" control, map control icons, the "Ready to use offline" check, the ring of the focused search field, the search highlight (at 18%), and the focus ring. At night it becomes a lighter lagoon (`lagoon-teal-night`) with dark text on it (`on-lagoon-night`).
 
 ### Secondary
 
@@ -252,13 +262,14 @@ A restrained palette of cool sea neutrals, one deep teal accent, and nine muted 
 
 ## Layout
 
-The phone layout is one column. The masthead scrolls away. The map sticks to the top at 42% of the screen height (72% with "Larger map"). The list scrolls under it.
+The phone layout is one column. The masthead scrolls away. The map sticks to the top at 42% of the screen height (72% with "Larger map"). The search bar sticks under the map. The list scrolls under both. While the search field has focus, the map shrinks to 24% of the screen height, so the results show above the keyboard.
 
 - The page gutter is 16 px. The masthead and the area headings add 4 px more, so the title and the headings start on the same line.
 - Areas are 32 px apart. An area heading sits 10 px above its group. Each restaurant row has 14 px of padding at the top and 16 px at the sides.
 - A row is a 3-column grid: a 28 px token, the text column, and a 20 px chevron, with 14 px between them. Dividers and the open details start at the text column (58 px from the group edge), so the numbers stay in a clean column.
 - The page respects the iPhone safe areas at the top and bottom.
-- At 60rem (960 px) and wider, the page becomes two columns: the list on the left (24rem to 34rem wide) and the full-height map on the right. The "Larger map" control is hidden.
+- Areas are 32 px apart, set as a column gap, so hidden areas leave no space during a search.
+- At 60rem (960 px) and wider, the page becomes two columns: the list on the left (24rem to 34rem wide) and the full-height map on the right. The search bar sticks to the top of the list column. The "Larger map" control is hidden.
 
 **The Summary First Rule.** A closed card shows only the name, the travel time, and the food. All other fields wait behind a touch.
 
@@ -293,6 +304,14 @@ The components are soft and friendly: easy to touch, rounded, and quiet in color
 - **Primary:** Lagoon Teal fill, white text, a 16 px stroke icon on the left ("Show on map" with a pin icon, "See details" in popups).
 - **Tonal:** Foam fill, ink text, an external-link icon on the right in Weathered Teal Gray. Use it for source links.
 - **Focus:** a 3 px Lagoon Teal outline, 2 px outside the shape.
+
+### Search field
+
+- **Style:** a white capsule, 44 px tall, with a hairline ring, on a Shore Mist bar under the map. A 18 px search icon in Weathered Teal Gray sits on the left. The text is 17 px, so the iPhone does not zoom in on focus.
+- **Focus:** the hairline ring becomes a 2 px Lagoon Teal ring.
+- **While searching:** the match count ("6 places") sits at the right in meta type, then a round clear button.
+- **Results:** matching words in the name and the food line get a soft Lagoon Teal highlight (18%, 3 px corners). When a match is only in the details, a 2-line snippet shows the field label and the matching text. Area counts change to "2 of 4 places".
+- **No results:** a short message, a hint, and a tonal "Clear the search" button.
 
 ### Map controls
 
@@ -344,6 +363,7 @@ All icons are drawn on a 24 px grid with round caps and joins: 1.75 px strokes, 
 - **Do** make every touch target at least 44 px tall.
 - **Do** show the name, the travel time, and the food first, and put everything else behind a touch.
 - **Do** use the Beach Sand note box for what the poster and the commenters said.
+- **Do** mark search matches with the soft Lagoon Teal highlight, never with Beach Sand or bold text.
 - **Do** keep the map palette in `map-theme.js` in step with the page colors in both appearances.
 - **Do** keep motion short (0.2 s to 0.32 s, ease out) and turn it off for reduced motion.
 

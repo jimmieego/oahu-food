@@ -21,6 +21,15 @@ The site is self-contained. The map tiles for Oahu, the map libraries, and the f
 | `manifest.webmanifest`, `icons/` | The name and icon for the iPhone home screen. |
 | `.nojekyll` | Stops GitHub Pages from converting the Markdown files into HTML pages. Do not delete it. |
 
+## Search
+
+The search field under the map finds restaurants by keyword. It searches the name, the area, the food, the other fields, and the notes. It does not search the links.
+
+- Each word must match the start of a word in the restaurant. For example, "shave ice" finds places with both words.
+- Accents and the okina do not matter. "Haleiwa" finds "Haleʻiwa".
+- The list and the map show only the matches. Press Search on the keyboard to close the keyboard and zoom the map to the matches.
+- If a match is only in the details, a short line under the restaurant shows where the word is.
+
 ## Add a restaurant
 
 1. Open `restaurants.md`.

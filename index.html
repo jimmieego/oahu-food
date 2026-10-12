@@ -67,6 +67,33 @@
             <p class="map-status" id="map-status" role="status"></p>
         </div>
 
+        <form class="search" id="search" role="search" hidden>
+            <div class="search-field">
+                <svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.5" cy="10.5" r="6.25" />
+                    <path d="m15.25 15.25 4.5 4.5" />
+                </svg>
+                <label class="visually-hidden" for="search-input">Search the restaurants</label>
+                <input
+                    class="search-input"
+                    id="search-input"
+                    type="search"
+                    placeholder="Search food, names, or areas"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    enterkeyhint="search"
+                />
+                <span class="search-count" id="search-count" aria-hidden="true"></span>
+                <button class="search-clear" type="button" id="search-clear" hidden>
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg>
+                    <span class="visually-hidden">Clear the search</span>
+                </button>
+            </div>
+            <p class="visually-hidden" id="search-status" role="status"></p>
+        </form>
+
         <main class="places" id="places">
             <p class="status-message">Loading restaurants…</p>
         </main>

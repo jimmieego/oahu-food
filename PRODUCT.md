@@ -43,6 +43,7 @@ Capabilities:
 - Labels with a special use: `Coordinates`, `Address`, labels with "travel time", labels with "food", labels with "post" or "comment", and `Sources`.
 - The list groups places by area and numbers them in file order. Each card shows a summary. A touch opens the details and the links.
 - The map shows numbered pins in area colors, a pin for the hotel, and groups of nearby pins. It has "Show all", "My location" (https only), and a larger map on the phone.
+- Keyword search: one field under the map searches the names, areas, food, other fields, and notes. It ignores accents and the okina, and it matches the start of words. The list and the map show only the matches.
 - Offline use: the site shows "Saving", "Ready to use offline", or "Offline" under the title. With a connection, the list loads fresh. After 3 seconds with no answer, the site shows the saved copy.
 
 Constraints confirmed by the owner:

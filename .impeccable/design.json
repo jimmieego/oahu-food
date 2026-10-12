@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T18:18:57+00:00",
+  "generatedAt": "2026-10-12T19:21:15+00:00",
   "title": "Design System: Oahu food shortlist",
   "extensions": {
     "colorMeta": {
@@ -756,6 +756,14 @@
       "css": ".ds-map-tools { display: inline-flex; border-radius: 999px; background: var(--surface, #ffffff); box-shadow: 0 1px 2px rgb(20 41 45 / 0.1), 0 6px 18px rgb(20 41 45 / 0.12); } .ds-map-btn { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 15px 0 13px; border: 0; border-radius: 999px; background: transparent; color: var(--ink, #14292d); font: 600 0.875rem/1 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); cursor: pointer; } .ds-map-btn + .ds-map-btn::before { content: ''; position: absolute; top: 12px; bottom: 12px; left: 0; width: 1px; background: var(--rule, rgb(20 41 45 / 0.1)); } .ds-map-btn .ds-icon { width: 18px; height: 18px; stroke-width: 1.75; color: var(--accent, #0f6e77); } .ds-map-btn:hover { background: var(--tint, #ebf0ef); } .ds-map-btn:focus-visible { outline: 3px solid var(--accent, #0f6e77); outline-offset: 2px; } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
     },
     {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "The sticky keyword search under the map, with the match count and the clear button.",
+      "html": "<div class=\"ds-search\"><svg class=\"ds-search-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.25\"/><path d=\"m15.25 15.25 4.5 4.5\"/></svg><input class=\"ds-search-input\" type=\"search\" value=\"poke\" aria-label=\"Search the restaurants\"><span class=\"ds-search-count\">6 places</span><button class=\"ds-search-clear\" type=\"button\" aria-label=\"Clear the search\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m7 7 10 10M17 7 7 17\"/></svg></button></div>",
+      "css": ".ds-search { position: relative; display: flex; align-items: center; max-width: 360px; height: 44px; border-radius: 999px; background: var(--surface, #ffffff); box-shadow: 0 0 0 1px var(--rule, rgb(20 41 45 / 0.1)), 0 1px 2px rgb(20 41 45 / 0.05); transition: box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-search:focus-within { box-shadow: 0 0 0 2px var(--accent, #0f6e77), 0 1px 2px rgb(20 41 45 / 0.05); } .ds-search-icon { position: absolute; left: 15px; width: 18px; height: 18px; fill: none; stroke: var(--ink-soft, #5b6d70); stroke-width: 1.75; stroke-linecap: round; pointer-events: none; } .ds-search-input { flex: 1; min-width: 0; height: 100%; padding: 0 8px 0 44px; border: 0; background: transparent; color: var(--ink, #14292d); font: 400 1.0625rem/1.2 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); -webkit-appearance: none; appearance: none; } .ds-search-input:focus { outline: none; } .ds-search-input::-webkit-search-cancel-button { -webkit-appearance: none; } .ds-search-count { padding-right: 4px; color: var(--ink-soft, #5b6d70); font: 500 0.875rem/1 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-search-clear { display: grid; place-items: center; width: 44px; height: 44px; margin-left: -4px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--ink-soft, #5b6d70); cursor: pointer; } .ds-search-clear svg { width: 28px; height: 28px; padding: 5px; border-radius: 50%; background: var(--tint, #ebf0ef); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; } .ds-search-clear:hover svg { background: color-mix(in srgb, var(--ink, #14292d) 10%, var(--tint, #ebf0ef)); } .ds-search-clear:focus-visible { outline: 3px solid var(--accent, #0f6e77); outline-offset: -4px; }"
+    },
+    {
       "name": "Place Row",
       "kind": "card",
       "refersTo": "place-row",
@@ -856,6 +864,7 @@
       "**Do** make every touch target at least 44 px tall.",
       "**Do** show the name, the travel time, and the food first, and put everything else behind a touch.",
       "**Do** use the Beach Sand note box for what the poster and the commenters said.",
+      "**Do** mark search matches with the soft Lagoon Teal highlight, never with Beach Sand or bold text.",
       "**Do** keep the map palette in `map-theme.js` in step with the page colors in both appearances.",
       "**Do** keep motion short (0.2 s to 0.32 s, ease out) and turn it off for reduced motion."
     ],

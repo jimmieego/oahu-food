@@ -8,9 +8,15 @@ const scopeUrl = (path) => new URL(path, self.registration.scope).href;
 const TILES_URL = scopeUrl('tiles/oahu.pmtiles');
 const PAGE_URL = scopeUrl('index.html');
 const DATA_URL = scopeUrl('restaurants.md');
-const CODE_FILES = ['index.html', 'styles.css', 'app.js', 'parse.js', 'map-theme.js', 'manifest.webmanifest'].map(
-    scopeUrl
-);
+const CODE_FILES = [
+    'index.html',
+    'styles.css',
+    'app.js',
+    'parse.js',
+    'search.js',
+    'map-theme.js',
+    'manifest.webmanifest',
+].map(scopeUrl);
 const STATIC_FILES = [
     'icons/icon.svg',
     'icons/apple-touch-icon.png',

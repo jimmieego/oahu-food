@@ -1,5 +1,6 @@
 import { MAP_FLAVORS } from './map-theme.js';
 import { escapeHtml, parseShortlist, plainText, renderInline } from './parse.js';
+import { findRanges, makeSearchEntries, parseQuery, searchPlace } from './search.js';
 
 const DATA_URL = 'restaurants.md';
 const AREA_TONES = ['lagoon', 'ahi', 'ube', 'tileaf', 'lilikoi', 'reef', 'hibiscus', 'koa', 'slate'];
@@ -45,11 +46,15 @@ const PIN_SIZE = 28;
 const CLUSTER_SIZE = 36;
 const CLUSTER_HOME_WIDTH = 18;
 const STATUS_DURATION_MS = 6000;
+const SEARCH_ANNOUNCE_DELAY_MS = 700;
+const MAP_RESIZE_MS = 360;
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
+const root = document.documentElement;
 const elements = {
+    masthead: document.querySelector('.masthead'),
     title: document.getElementById('title'),
     meta: document.getElementById('meta'),
     count: document.getElementById('count'),
@@ -64,13 +69,22 @@ const elements = {
     mapSizeLabel: document.getElementById('map-size-label'),
     mapStatus: document.getElementById('map-status'),
     places: document.getElementById('places'),
+    search: document.getElementById('search'),
+    searchInput: document.getElementById('search-input'),
+    searchCount: document.getElementById('search-count'),
+    searchClear: document.getElementById('search-clear'),
+    searchStatus: document.getElementById('search-status'),
 };
 
 const state = {
     map: null,
     cluster: null,
-    bounds: null,
+    home: null,
     markers: new Map(),
+    areas: [],
+    visibleIds: null,
+    needsFit: false,
+    announceTimer: 0,
     selectedId: null,
     userDot: null,
     statusTimer: 0,
@@ -134,7 +148,7 @@ function renderPlace(place) {
         ? `<button class="action action--primary" type="button" data-show-on-map="${place.id}">${ICONS.pin}Show on map</button>`
         : '<p class="place-missing">Not on the map yet. Add a Coordinates line for this place in restaurants.md.</p>';
     const foodPreview = food
-        ? `<p class="place-food"><span class="visually-hidden">${escapeHtml(food.label)}: </span>${escapeHtml(plainText(food.value))}</p>`
+        ? `<p class="place-food"><span class="visually-hidden">${escapeHtml(food.label)}: </span><span class="place-food-text">${escapeHtml(plainText(food.value))}</span></p>`
         : '';
 
     return `
@@ -142,9 +156,10 @@ function renderPlace(place) {
             <div class="place-summary">
                 <span class="place-token" aria-hidden="true">${place.number}</span>
                 <div class="place-heading">
-                    <h3 class="place-name" id="${place.id}-name"><button class="place-toggle" type="button" aria-expanded="false" aria-controls="${place.id}-details" data-toggle="${place.id}"><span class="visually-hidden">${place.number}. </span>${escapeHtml(plainText(place.name))}</button></h3>
+                    <h3 class="place-name" id="${place.id}-name"><button class="place-toggle" type="button" aria-expanded="false" aria-controls="${place.id}-details" data-toggle="${place.id}"><span class="visually-hidden">${place.number}. </span><span class="place-name-text">${escapeHtml(plainText(place.name))}</span></button></h3>
                     ${renderTravel(place)}
                     ${foodPreview}
+                    <p class="place-match" hidden></p>
                 </div>
                 ${ICONS.chevron}
             </div>
@@ -164,7 +179,7 @@ function renderSection(section) {
     const places =
         section.places.length > 0 ? `<div class="area-places">${section.places.map(renderPlace).join('')}</div>` : '';
     return `
-        <section class="area tone-${tone}" aria-labelledby="area-${section.index}">
+        <section class="area tone-${tone}" id="area-section-${section.index}" aria-labelledby="area-${section.index}">
             <div class="area-header">
                 <h2 class="area-title" id="area-${section.index}">${renderInline(section.name)}</h2>
                 <span class="area-count">${countLabel(section.places.length, 'place', 'places')}</span>
@@ -194,7 +209,188 @@ function renderPage(shortlist) {
         'areas'
     )}`;
     elements.meta.hidden = false;
-    elements.places.innerHTML = shortlist.sections.map(renderSection).join('');
+    elements.places.innerHTML = `
+        <div class="search-empty" id="search-empty" hidden>
+            <p class="search-empty-title" id="search-empty-title"></p>
+            <p>Try one word, such as a food or an area name.</p>
+            <button class="action" type="button" data-clear-search>Clear the search</button>
+        </div>
+        ${shortlist.sections.map(renderSection).join('')}`;
+    elements.searchEmpty = document.getElementById('search-empty');
+    elements.searchEmptyTitle = document.getElementById('search-empty-title');
+    state.areas = shortlist.sections.map((section) => {
+        const element = document.getElementById(`area-section-${section.index}`);
+        return {
+            element,
+            count: element.querySelector('.area-count'),
+            total: section.places.length,
+            places: section.places.map((place) => {
+                const entry = document.getElementById(place.id);
+                const food = entry.querySelector('.place-food-text');
+                return {
+                    id: place.id,
+                    element: entry,
+                    entries: makeSearchEntries(place, section.name),
+                    name: entry.querySelector('.place-name-text'),
+                    nameText: plainText(place.name),
+                    food,
+                    foodText: food?.textContent ?? '',
+                    match: entry.querySelector('.place-match'),
+                };
+            }),
+        };
+    });
+    elements.search.hidden = false;
+}
+
+function highlight(text, terms) {
+    let html = '';
+    let last = 0;
+    for (const [start, end] of findRanges(text, terms)) {
+        html += `${escapeHtml(text.slice(last, start))}<mark>${escapeHtml(text.slice(start, end))}</mark>`;
+        last = end;
+    }
+    return html + escapeHtml(text.slice(last));
+}
+
+function renderMatch(item, result, terms) {
+    item.element.hidden = !result.isMatch;
+    item.name.innerHTML = highlight(item.nameText, terms);
+    if (item.food) {
+        item.food.innerHTML = highlight(item.foodText, terms);
+    }
+    const { snippet } = result;
+    item.match.hidden = !snippet;
+    item.match.innerHTML = snippet
+        ? `${snippet.label ? `<span class="place-match-label">${escapeHtml(snippet.label)}:</span> ` : ''}${highlight(snippet.text, terms)}`
+        : '';
+}
+
+function announceSearch(query, total) {
+    window.clearTimeout(state.announceTimer);
+    state.announceTimer = window.setTimeout(() => {
+        let message = '';
+        if (query && total === 0) {
+            message = `No places match "${query}".`;
+        } else if (query) {
+            message = total === 1 ? `1 place matches "${query}".` : `${total} places match "${query}".`;
+        }
+        elements.searchStatus.textContent = message;
+    }, SEARCH_ANNOUNCE_DELAY_MS);
+}
+
+function applySearch(rawQuery) {
+    const query = rawQuery.trim();
+    const terms = parseQuery(query);
+    const isSearching = terms.length > 0;
+    const visibleIds = new Set();
+    for (const area of state.areas) {
+        let shown = 0;
+        for (const item of area.places) {
+            const result = searchPlace(item.entries, terms);
+            renderMatch(item, result, terms);
+            if (result.isMatch) {
+                shown += 1;
+                visibleIds.add(item.id);
+            }
+        }
+        area.element.hidden = shown === 0;
+        const total = countLabel(area.total, 'place', 'places');
+        area.count.textContent = isSearching ? `${shown} of ${total}` : total;
+    }
+    const total = visibleIds.size;
+    elements.searchCount.textContent = isSearching ? countLabel(total, 'place', 'places') : '';
+    elements.searchClear.hidden = rawQuery === '';
+    elements.searchEmpty.hidden = !isSearching || total > 0;
+    elements.searchEmptyTitle.textContent = `No places match "${query}".`;
+    announceSearch(query, total);
+    filterMap(isSearching ? visibleIds : null);
+}
+
+function filterMap(visibleIds) {
+    const previous = state.visibleIds;
+    state.visibleIds = visibleIds;
+    if (!state.cluster) {
+        return;
+    }
+    const isSame =
+        previous === visibleIds ||
+        (previous && visibleIds && previous.size === visibleIds.size && [...visibleIds].every((id) => previous.has(id)));
+    if (isSame) {
+        return;
+    }
+    state.needsFit = true;
+    if (state.selectedId && visibleIds && !visibleIds.has(state.selectedId)) {
+        state.map.closePopup();
+    }
+    const show = [];
+    const hide = [];
+    for (const [id, marker] of state.markers) {
+        const isShown = !visibleIds || visibleIds.has(id);
+        if (isShown !== state.cluster.hasLayer(marker)) {
+            (isShown ? show : hide).push(marker);
+        }
+    }
+    state.cluster.removeLayers(hide);
+    state.cluster.addLayers(show);
+}
+
+function scrollToResults() {
+    const top = elements.masthead.offsetHeight;
+    if (window.scrollY > top) {
+        window.scrollTo({ top, behavior: 'auto' });
+    }
+}
+
+function clearSearch() {
+    elements.searchInput.value = '';
+    applySearch('');
+    elements.searchInput.focus();
+}
+
+function initSearch() {
+    const input = elements.searchInput;
+    input.addEventListener('input', () => {
+        applySearch(input.value);
+        scrollToResults();
+    });
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && input.value) {
+            event.preventDefault();
+            clearSearch();
+        }
+    });
+    input.addEventListener('focus', () => {
+        root.classList.add('is-searching');
+        const top = elements.masthead.offsetHeight;
+        if (window.scrollY < top) {
+            window.requestAnimationFrame(() => window.scrollTo({ top, behavior: 'auto' }));
+        }
+    });
+    input.addEventListener('blur', () => {
+        root.classList.remove('is-searching');
+        if (!state.needsFit || !state.map) {
+            return;
+        }
+        state.needsFit = false;
+        window.setTimeout(
+            () => {
+                state.map.invalidateSize();
+                showAll();
+            },
+            reducedMotion.matches ? 0 : MAP_RESIZE_MS
+        );
+    });
+    elements.search.addEventListener('submit', (event) => {
+        event.preventDefault();
+        input.blur();
+    });
+    elements.searchClear.addEventListener('click', clearSearch);
+    elements.places.addEventListener('click', (event) => {
+        if (event.target.closest('[data-clear-search]')) {
+            clearSearch();
+        }
+    });
 }
 
 function renderLoadError(error) {
@@ -300,9 +496,23 @@ function showStatus(message) {
     }, STATUS_DURATION_MS);
 }
 
+function visibleBounds() {
+    const points = [];
+    for (const [id, marker] of state.markers) {
+        if (!state.visibleIds || state.visibleIds.has(id)) {
+            points.push(marker.getLatLng());
+        }
+    }
+    if (state.home && !state.visibleIds) {
+        points.push(state.home.getLatLng());
+    }
+    return points.length > 0 ? window.L.latLngBounds(points) : null;
+}
+
 function showAll() {
-    if (state.bounds) {
-        state.map.fitBounds(state.bounds, {
+    const bounds = visibleBounds();
+    if (bounds) {
+        state.map.fitBounds(bounds, {
             paddingTopLeft: [28, 72],
             paddingBottomRight: [28, 60],
             maxZoom: 15,
@@ -427,6 +637,7 @@ function initMap(shortlist) {
         });
         home.bindPopup(homePopupContent(shortlist.start));
         cluster.addLayer(home);
+        state.home = home;
         points.push(shortlist.start.coordinates);
     }
 
@@ -462,8 +673,7 @@ function initMap(shortlist) {
 
     state.map = map;
     state.cluster = cluster;
-    state.bounds = points.length > 0 ? L.latLngBounds(points) : null;
-    if (state.bounds) {
+    if (points.length > 0) {
         showAll();
     } else {
         map.setView([21.44, -157.97], 10);
@@ -574,6 +784,9 @@ async function main() {
     }
     renderPage(shortlist);
     elements.places.addEventListener('click', handleToggle);
+    if (shortlist.places.length > 0) {
+        initSearch();
+    }
     initMap(shortlist);
 }
 

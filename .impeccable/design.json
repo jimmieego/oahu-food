@@ -1,0 +1,871 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T18:18:57+00:00",
+  "title": "Design System: Oahu food shortlist",
+  "extensions": {
+    "colorMeta": {
+      "lagoon-teal": {
+        "role": "primary",
+        "displayName": "Lagoon Teal",
+        "canonical": "oklch(49.3% 0.081 205.2)",
+        "tonalRamp": [
+          "oklch(15% 0.047 205.2)",
+          "oklch(26% 0.053 205.2)",
+          "oklch(37% 0.059 205.2)",
+          "oklch(48% 0.065 205.2)",
+          "oklch(60% 0.066 205.2)",
+          "oklch(72% 0.059 205.2)",
+          "oklch(84% 0.053 205.2)",
+          "oklch(95% 0.047 205.2)"
+        ]
+      },
+      "on-lagoon": {
+        "role": "primary",
+        "displayName": "On Lagoon",
+        "canonical": "oklch(100% 0 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(60% 0 89.9)",
+          "oklch(72% 0 89.9)",
+          "oklch(84% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "deep-channel-ink": {
+        "role": "neutral",
+        "displayName": "Deep Channel Ink",
+        "canonical": "oklch(26.5% 0.028 211.1)",
+        "tonalRamp": [
+          "oklch(15% 0.028 211.1)",
+          "oklch(26% 0.028 211.1)",
+          "oklch(37% 0.028 211.1)",
+          "oklch(48% 0.028 211.1)",
+          "oklch(60% 0.028 211.1)",
+          "oklch(72% 0.028 211.1)",
+          "oklch(84% 0.028 211.1)",
+          "oklch(95% 0.028 211.1)"
+        ]
+      },
+      "weathered-teal-gray": {
+        "role": "neutral",
+        "displayName": "Weathered Teal Gray",
+        "canonical": "oklch(52.1% 0.022 208.8)",
+        "tonalRamp": [
+          "oklch(15% 0.022 208.8)",
+          "oklch(26% 0.022 208.8)",
+          "oklch(37% 0.022 208.8)",
+          "oklch(48% 0.022 208.8)",
+          "oklch(60% 0.022 208.8)",
+          "oklch(72% 0.022 208.8)",
+          "oklch(84% 0.022 208.8)",
+          "oklch(95% 0.022 208.8)"
+        ]
+      },
+      "shore-mist": {
+        "role": "neutral",
+        "displayName": "Shore Mist",
+        "canonical": "oklch(96.8% 0.002 165.1)",
+        "tonalRamp": [
+          "oklch(15% 0.002 165.1)",
+          "oklch(26% 0.002 165.1)",
+          "oklch(37% 0.002 165.1)",
+          "oklch(48% 0.002 165.1)",
+          "oklch(60% 0.002 165.1)",
+          "oklch(72% 0.002 165.1)",
+          "oklch(84% 0.002 165.1)",
+          "oklch(95% 0.002 165.1)"
+        ]
+      },
+      "card-white": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "oklch(100% 0 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0 89.9)",
+          "oklch(26% 0 89.9)",
+          "oklch(37% 0 89.9)",
+          "oklch(48% 0 89.9)",
+          "oklch(60% 0 89.9)",
+          "oklch(72% 0 89.9)",
+          "oklch(84% 0 89.9)",
+          "oklch(95% 0 89.9)"
+        ]
+      },
+      "foam": {
+        "role": "neutral",
+        "displayName": "Foam",
+        "canonical": "oklch(95.1% 0.005 183)",
+        "tonalRamp": [
+          "oklch(15% 0.005 183)",
+          "oklch(26% 0.005 183)",
+          "oklch(37% 0.005 183)",
+          "oklch(48% 0.005 183)",
+          "oklch(60% 0.005 183)",
+          "oklch(72% 0.005 183)",
+          "oklch(84% 0.005 183)",
+          "oklch(95% 0.005 183)"
+        ]
+      },
+      "beach-sand": {
+        "role": "secondary",
+        "displayName": "Beach Sand",
+        "canonical": "oklch(95.2% 0.027 90.9)",
+        "tonalRamp": [
+          "oklch(15% 0.027 90.9)",
+          "oklch(26% 0.027 90.9)",
+          "oklch(37% 0.027 90.9)",
+          "oklch(48% 0.027 90.9)",
+          "oklch(60% 0.027 90.9)",
+          "oklch(72% 0.027 90.9)",
+          "oklch(84% 0.027 90.9)",
+          "oklch(95% 0.027 90.9)"
+        ]
+      },
+      "tidemark-ochre": {
+        "role": "secondary",
+        "displayName": "Tidemark Ochre",
+        "canonical": "oklch(47.7% 0.086 81.3)",
+        "tonalRamp": [
+          "oklch(15% 0.049 81.3)",
+          "oklch(26% 0.055 81.3)",
+          "oklch(37% 0.061 81.3)",
+          "oklch(48% 0.067 81.3)",
+          "oklch(60% 0.069 81.3)",
+          "oklch(72% 0.062 81.3)",
+          "oklch(84% 0.055 81.3)",
+          "oklch(95% 0.049 81.3)"
+        ]
+      },
+      "sea-glass": {
+        "role": "neutral",
+        "displayName": "Sea Glass",
+        "canonical": "oklch(90.2% 0.021 204)",
+        "tonalRamp": [
+          "oklch(15% 0.021 204)",
+          "oklch(26% 0.021 204)",
+          "oklch(37% 0.021 204)",
+          "oklch(48% 0.021 204)",
+          "oklch(60% 0.021 204)",
+          "oklch(72% 0.021 204)",
+          "oklch(84% 0.021 204)",
+          "oklch(95% 0.021 204)"
+        ]
+      },
+      "pale-sand-earth": {
+        "role": "neutral",
+        "displayName": "Pale Sand Earth",
+        "canonical": "oklch(95.2% 0.007 97.4)",
+        "tonalRamp": [
+          "oklch(15% 0.007 97.4)",
+          "oklch(26% 0.007 97.4)",
+          "oklch(37% 0.007 97.4)",
+          "oklch(48% 0.007 97.4)",
+          "oklch(60% 0.007 97.4)",
+          "oklch(72% 0.007 97.4)",
+          "oklch(84% 0.007 97.4)",
+          "oklch(95% 0.007 97.4)"
+        ]
+      },
+      "area-lagoon": {
+        "role": "tertiary",
+        "displayName": "Area Lagoon",
+        "canonical": "oklch(53.5% 0.076 202.3)",
+        "tonalRamp": [
+          "oklch(15% 0.045 202.3)",
+          "oklch(26% 0.051 202.3)",
+          "oklch(37% 0.056 202.3)",
+          "oklch(48% 0.062 202.3)",
+          "oklch(60% 0.063 202.3)",
+          "oklch(72% 0.057 202.3)",
+          "oklch(84% 0.051 202.3)",
+          "oklch(95% 0.045 202.3)"
+        ]
+      },
+      "area-ahi": {
+        "role": "tertiary",
+        "displayName": "Area Ahi",
+        "canonical": "oklch(56.3% 0.127 24.4)",
+        "tonalRamp": [
+          "oklch(15% 0.063 24.4)",
+          "oklch(26% 0.072 24.4)",
+          "oklch(37% 0.081 24.4)",
+          "oklch(48% 0.09 24.4)",
+          "oklch(60% 0.092 24.4)",
+          "oklch(72% 0.082 24.4)",
+          "oklch(84% 0.072 24.4)",
+          "oklch(95% 0.063 24.4)"
+        ]
+      },
+      "area-ube": {
+        "role": "tertiary",
+        "displayName": "Area Ube",
+        "canonical": "oklch(53% 0.114 291.3)",
+        "tonalRamp": [
+          "oklch(15% 0.058 291.3)",
+          "oklch(26% 0.067 291.3)",
+          "oklch(37% 0.075 291.3)",
+          "oklch(48% 0.083 291.3)",
+          "oklch(60% 0.085 291.3)",
+          "oklch(72% 0.076 291.3)",
+          "oklch(84% 0.067 291.3)",
+          "oklch(95% 0.058 291.3)"
+        ]
+      },
+      "area-tileaf": {
+        "role": "tertiary",
+        "displayName": "Area Tileaf",
+        "canonical": "oklch(53.3% 0.094 140.7)",
+        "tonalRamp": [
+          "oklch(15% 0.052 140.7)",
+          "oklch(26% 0.058 140.7)",
+          "oklch(37% 0.065 140.7)",
+          "oklch(48% 0.072 140.7)",
+          "oklch(60% 0.073 140.7)",
+          "oklch(72% 0.066 140.7)",
+          "oklch(84% 0.058 140.7)",
+          "oklch(95% 0.052 140.7)"
+        ]
+      },
+      "area-lilikoi": {
+        "role": "tertiary",
+        "displayName": "Area Lilikoi",
+        "canonical": "oklch(53.7% 0.104 68)",
+        "tonalRamp": [
+          "oklch(15% 0.055 68)",
+          "oklch(26% 0.062 68)",
+          "oklch(37% 0.07 68)",
+          "oklch(48% 0.077 68)",
+          "oklch(60% 0.079 68)",
+          "oklch(72% 0.071 68)",
+          "oklch(84% 0.062 68)",
+          "oklch(95% 0.055 68)"
+        ]
+      },
+      "area-reef": {
+        "role": "tertiary",
+        "displayName": "Area Reef",
+        "canonical": "oklch(51.7% 0.1 254)",
+        "tonalRamp": [
+          "oklch(15% 0.053 254)",
+          "oklch(26% 0.061 254)",
+          "oklch(37% 0.068 254)",
+          "oklch(48% 0.075 254)",
+          "oklch(60% 0.076 254)",
+          "oklch(72% 0.069 254)",
+          "oklch(84% 0.061 254)",
+          "oklch(95% 0.053 254)"
+        ]
+      },
+      "area-hibiscus": {
+        "role": "tertiary",
+        "displayName": "Area Hibiscus",
+        "canonical": "oklch(54.9% 0.122 351)",
+        "tonalRamp": [
+          "oklch(15% 0.061 351)",
+          "oklch(26% 0.07 351)",
+          "oklch(37% 0.079 351)",
+          "oklch(48% 0.088 351)",
+          "oklch(60% 0.089 351)",
+          "oklch(72% 0.08 351)",
+          "oklch(84% 0.07 351)",
+          "oklch(95% 0.061 351)"
+        ]
+      },
+      "area-koa": {
+        "role": "tertiary",
+        "displayName": "Area Koa",
+        "canonical": "oklch(52.4% 0.069 62.2)",
+        "tonalRamp": [
+          "oklch(15% 0.043 62.2)",
+          "oklch(26% 0.048 62.2)",
+          "oklch(37% 0.053 62.2)",
+          "oklch(48% 0.058 62.2)",
+          "oklch(60% 0.059 62.2)",
+          "oklch(72% 0.054 62.2)",
+          "oklch(84% 0.048 62.2)",
+          "oklch(95% 0.043 62.2)"
+        ]
+      },
+      "area-slate": {
+        "role": "tertiary",
+        "displayName": "Area Slate",
+        "canonical": "oklch(50.7% 0.024 243.8)",
+        "tonalRamp": [
+          "oklch(15% 0.024 243.8)",
+          "oklch(26% 0.024 243.8)",
+          "oklch(37% 0.024 243.8)",
+          "oklch(48% 0.024 243.8)",
+          "oklch(60% 0.024 243.8)",
+          "oklch(72% 0.024 243.8)",
+          "oklch(84% 0.024 243.8)",
+          "oklch(95% 0.024 243.8)"
+        ]
+      },
+      "lagoon-teal-night": {
+        "role": "primary",
+        "displayName": "Lagoon Teal (night)",
+        "canonical": "oklch(77.1% 0.09 200.9)",
+        "tonalRamp": [
+          "oklch(15% 0.05 200.9)",
+          "oklch(26% 0.057 200.9)",
+          "oklch(37% 0.063 200.9)",
+          "oklch(48% 0.07 200.9)",
+          "oklch(60% 0.071 200.9)",
+          "oklch(72% 0.064 200.9)",
+          "oklch(84% 0.057 200.9)",
+          "oklch(95% 0.05 200.9)"
+        ]
+      },
+      "on-lagoon-night": {
+        "role": "primary",
+        "displayName": "On Lagoon (night)",
+        "canonical": "oklch(20.5% 0.021 206.6)",
+        "tonalRamp": [
+          "oklch(15% 0.021 206.6)",
+          "oklch(26% 0.021 206.6)",
+          "oklch(37% 0.021 206.6)",
+          "oklch(48% 0.021 206.6)",
+          "oklch(60% 0.021 206.6)",
+          "oklch(72% 0.021 206.6)",
+          "oklch(84% 0.021 206.6)",
+          "oklch(95% 0.021 206.6)"
+        ]
+      },
+      "deep-channel-ink-night": {
+        "role": "neutral",
+        "displayName": "Deep Channel Ink (night)",
+        "canonical": "oklch(93.8% 0.011 182.9)",
+        "tonalRamp": [
+          "oklch(15% 0.011 182.9)",
+          "oklch(26% 0.011 182.9)",
+          "oklch(37% 0.011 182.9)",
+          "oklch(48% 0.011 182.9)",
+          "oklch(60% 0.011 182.9)",
+          "oklch(72% 0.011 182.9)",
+          "oklch(84% 0.011 182.9)",
+          "oklch(95% 0.011 182.9)"
+        ]
+      },
+      "weathered-teal-gray-night": {
+        "role": "neutral",
+        "displayName": "Weathered Teal Gray (night)",
+        "canonical": "oklch(74.4% 0.022 189.4)",
+        "tonalRamp": [
+          "oklch(15% 0.022 189.4)",
+          "oklch(26% 0.022 189.4)",
+          "oklch(37% 0.022 189.4)",
+          "oklch(48% 0.022 189.4)",
+          "oklch(60% 0.022 189.4)",
+          "oklch(72% 0.022 189.4)",
+          "oklch(84% 0.022 189.4)",
+          "oklch(95% 0.022 189.4)"
+        ]
+      },
+      "shore-mist-night": {
+        "role": "neutral",
+        "displayName": "Shore Mist (night)",
+        "canonical": "oklch(19.2% 0.014 212.9)",
+        "tonalRamp": [
+          "oklch(15% 0.014 212.9)",
+          "oklch(26% 0.014 212.9)",
+          "oklch(37% 0.014 212.9)",
+          "oklch(48% 0.014 212.9)",
+          "oklch(60% 0.014 212.9)",
+          "oklch(72% 0.014 212.9)",
+          "oklch(84% 0.014 212.9)",
+          "oklch(95% 0.014 212.9)"
+        ]
+      },
+      "card-white-night": {
+        "role": "neutral",
+        "displayName": "Card White (night)",
+        "canonical": "oklch(23.8% 0.018 214.9)",
+        "tonalRamp": [
+          "oklch(15% 0.018 214.9)",
+          "oklch(26% 0.018 214.9)",
+          "oklch(37% 0.018 214.9)",
+          "oklch(48% 0.018 214.9)",
+          "oklch(60% 0.018 214.9)",
+          "oklch(72% 0.018 214.9)",
+          "oklch(84% 0.018 214.9)",
+          "oklch(95% 0.018 214.9)"
+        ]
+      },
+      "foam-night": {
+        "role": "neutral",
+        "displayName": "Foam (night)",
+        "canonical": "oklch(28.9% 0.021 211.3)",
+        "tonalRamp": [
+          "oklch(15% 0.021 211.3)",
+          "oklch(26% 0.021 211.3)",
+          "oklch(37% 0.021 211.3)",
+          "oklch(48% 0.021 211.3)",
+          "oklch(60% 0.021 211.3)",
+          "oklch(72% 0.021 211.3)",
+          "oklch(84% 0.021 211.3)",
+          "oklch(95% 0.021 211.3)"
+        ]
+      },
+      "beach-sand-night": {
+        "role": "secondary",
+        "displayName": "Beach Sand (night)",
+        "canonical": "oklch(26.6% 0.016 107.4)",
+        "tonalRamp": [
+          "oklch(15% 0.016 107.4)",
+          "oklch(26% 0.016 107.4)",
+          "oklch(37% 0.016 107.4)",
+          "oklch(48% 0.016 107.4)",
+          "oklch(60% 0.016 107.4)",
+          "oklch(72% 0.016 107.4)",
+          "oklch(84% 0.016 107.4)",
+          "oklch(95% 0.016 107.4)"
+        ]
+      },
+      "tidemark-ochre-night": {
+        "role": "secondary",
+        "displayName": "Tidemark Ochre (night)",
+        "canonical": "oklch(82.7% 0.08 88)",
+        "tonalRamp": [
+          "oklch(15% 0.047 88)",
+          "oklch(26% 0.053 88)",
+          "oklch(37% 0.058 88)",
+          "oklch(48% 0.064 88)",
+          "oklch(60% 0.065 88)",
+          "oklch(72% 0.059 88)",
+          "oklch(84% 0.053 88)",
+          "oklch(95% 0.047 88)"
+        ]
+      },
+      "sea-glass-night": {
+        "role": "neutral",
+        "displayName": "Sea Glass (night)",
+        "canonical": "oklch(19.7% 0.015 220.5)",
+        "tonalRamp": [
+          "oklch(15% 0.015 220.5)",
+          "oklch(26% 0.015 220.5)",
+          "oklch(37% 0.015 220.5)",
+          "oklch(48% 0.015 220.5)",
+          "oklch(60% 0.015 220.5)",
+          "oklch(72% 0.015 220.5)",
+          "oklch(84% 0.015 220.5)",
+          "oklch(95% 0.015 220.5)"
+        ]
+      },
+      "pale-sand-earth-night": {
+        "role": "neutral",
+        "displayName": "Pale Sand Earth (night)",
+        "canonical": "oklch(28.4% 0.016 216.2)",
+        "tonalRamp": [
+          "oklch(15% 0.016 216.2)",
+          "oklch(26% 0.016 216.2)",
+          "oklch(37% 0.016 216.2)",
+          "oklch(48% 0.016 216.2)",
+          "oklch(60% 0.016 216.2)",
+          "oklch(72% 0.016 216.2)",
+          "oklch(84% 0.016 216.2)",
+          "oklch(95% 0.016 216.2)"
+        ]
+      },
+      "area-lagoon-night": {
+        "role": "tertiary",
+        "displayName": "Area Lagoon (night)",
+        "canonical": "oklch(77.6% 0.07 200.5)",
+        "tonalRamp": [
+          "oklch(15% 0.043 200.5)",
+          "oklch(26% 0.048 200.5)",
+          "oklch(37% 0.054 200.5)",
+          "oklch(48% 0.059 200.5)",
+          "oklch(60% 0.06 200.5)",
+          "oklch(72% 0.054 200.5)",
+          "oklch(84% 0.048 200.5)",
+          "oklch(95% 0.043 200.5)"
+        ]
+      },
+      "area-ahi-night": {
+        "role": "tertiary",
+        "displayName": "Area Ahi (night)",
+        "canonical": "oklch(75.9% 0.091 24.5)",
+        "tonalRamp": [
+          "oklch(15% 0.051 24.5)",
+          "oklch(26% 0.057 24.5)",
+          "oklch(37% 0.064 24.5)",
+          "oklch(48% 0.07 24.5)",
+          "oklch(60% 0.072 24.5)",
+          "oklch(72% 0.064 24.5)",
+          "oklch(84% 0.057 24.5)",
+          "oklch(95% 0.051 24.5)"
+        ]
+      },
+      "area-ube-night": {
+        "role": "tertiary",
+        "displayName": "Area Ube (night)",
+        "canonical": "oklch(75.7% 0.089 293)",
+        "tonalRamp": [
+          "oklch(15% 0.05 293)",
+          "oklch(26% 0.056 293)",
+          "oklch(37% 0.063 293)",
+          "oklch(48% 0.069 293)",
+          "oklch(60% 0.07 293)",
+          "oklch(72% 0.063 293)",
+          "oklch(84% 0.056 293)",
+          "oklch(95% 0.05 293)"
+        ]
+      },
+      "area-tileaf-night": {
+        "role": "tertiary",
+        "displayName": "Area Tileaf (night)",
+        "canonical": "oklch(78% 0.086 137.7)",
+        "tonalRamp": [
+          "oklch(15% 0.049 137.7)",
+          "oklch(26% 0.055 137.7)",
+          "oklch(37% 0.061 137.7)",
+          "oklch(48% 0.068 137.7)",
+          "oklch(60% 0.069 137.7)",
+          "oklch(72% 0.062 137.7)",
+          "oklch(84% 0.055 137.7)",
+          "oklch(95% 0.049 137.7)"
+        ]
+      },
+      "area-lilikoi-night": {
+        "role": "tertiary",
+        "displayName": "Area Lilikoi (night)",
+        "canonical": "oklch(78.5% 0.092 73.3)",
+        "tonalRamp": [
+          "oklch(15% 0.051 73.3)",
+          "oklch(26% 0.058 73.3)",
+          "oklch(37% 0.064 73.3)",
+          "oklch(48% 0.071 73.3)",
+          "oklch(60% 0.072 73.3)",
+          "oklch(72% 0.065 73.3)",
+          "oklch(84% 0.058 73.3)",
+          "oklch(95% 0.051 73.3)"
+        ]
+      },
+      "area-reef-night": {
+        "role": "tertiary",
+        "displayName": "Area Reef (night)",
+        "canonical": "oklch(76.6% 0.074 256.9)",
+        "tonalRamp": [
+          "oklch(15% 0.045 256.9)",
+          "oklch(26% 0.05 256.9)",
+          "oklch(37% 0.056 256.9)",
+          "oklch(48% 0.061 256.9)",
+          "oklch(60% 0.062 256.9)",
+          "oklch(72% 0.056 256.9)",
+          "oklch(84% 0.05 256.9)",
+          "oklch(95% 0.045 256.9)"
+        ]
+      },
+      "area-hibiscus-night": {
+        "role": "tertiary",
+        "displayName": "Area Hibiscus (night)",
+        "canonical": "oklch(77.7% 0.087 347)",
+        "tonalRamp": [
+          "oklch(15% 0.049 347)",
+          "oklch(26% 0.055 347)",
+          "oklch(37% 0.062 347)",
+          "oklch(48% 0.068 347)",
+          "oklch(60% 0.069 347)",
+          "oklch(72% 0.062 347)",
+          "oklch(84% 0.055 347)",
+          "oklch(95% 0.049 347)"
+        ]
+      },
+      "area-koa-night": {
+        "role": "tertiary",
+        "displayName": "Area Koa (night)",
+        "canonical": "oklch(76.2% 0.066 66.6)",
+        "tonalRamp": [
+          "oklch(15% 0.042 66.6)",
+          "oklch(26% 0.047 66.6)",
+          "oklch(37% 0.052 66.6)",
+          "oklch(48% 0.057 66.6)",
+          "oklch(60% 0.058 66.6)",
+          "oklch(72% 0.052 66.6)",
+          "oklch(84% 0.047 66.6)",
+          "oklch(95% 0.042 66.6)"
+        ]
+      },
+      "area-slate-night": {
+        "role": "tertiary",
+        "displayName": "Area Slate (night)",
+        "canonical": "oklch(76.8% 0.019 245.5)",
+        "tonalRamp": [
+          "oklch(15% 0.019 245.5)",
+          "oklch(26% 0.019 245.5)",
+          "oklch(37% 0.019 245.5)",
+          "oklch(48% 0.019 245.5)",
+          "oklch(60% 0.019 245.5)",
+          "oklch(72% 0.019 245.5)",
+          "oklch(84% 0.019 245.5)",
+          "oklch(95% 0.019 245.5)"
+        ]
+      },
+      "on-area-night": {
+        "role": "tertiary",
+        "displayName": "On Area (night)",
+        "canonical": "oklch(20.7% 0.02 212.8)",
+        "tonalRamp": [
+          "oklch(15% 0.02 212.8)",
+          "oklch(26% 0.02 212.8)",
+          "oklch(37% 0.02 212.8)",
+          "oklch(48% 0.02 212.8)",
+          "oklch(60% 0.02 212.8)",
+          "oklch(72% 0.02 212.8)",
+          "oklch(84% 0.02 212.8)",
+          "oklch(95% 0.02 212.8)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(20 41 45 / 0.1)"
+      },
+      "hairline-night": {
+        "role": "neutral",
+        "displayName": "Hairline (night)",
+        "canonical": "rgb(227 237 235 / 0.1)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The page title in the masthead only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Area headings with the tone dot."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Restaurant names in the list and in map popups."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Field values and notes in an open card."
+      },
+      "body-summary": {
+        "displayName": "Body summary",
+        "purpose": "The 2-line food line in a closed card."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Travel times, counts, and the offline status."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels in an open card and in note boxes."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Labels in primary and tonal buttons."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Numbers in place tokens, pins, and clusters."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 1px 2px rgb(20 41 45 / 0.1), 0 6px 18px rgb(20 41 45 / 0.12)",
+        "purpose": "Map controls, popups, clusters, and the status message over the map."
+      },
+      {
+        "name": "float-night",
+        "value": "0 1px 2px rgb(0 0 0 / 0.4), 0 6px 18px rgb(0 0 0 / 0.35)",
+        "purpose": "The float shadow in dark mode."
+      },
+      {
+        "name": "whisper",
+        "value": "0 1px 2px rgb(20 41 45 / 0.05)",
+        "purpose": "Area groups on the page ground."
+      },
+      {
+        "name": "pin",
+        "value": "0 1px 3px rgb(0 0 0 / 0.28)",
+        "purpose": "Single map pins."
+      },
+      {
+        "name": "pin-selected",
+        "value": "0 0 0 4px color-mix(in srgb, var(--area) 30%, transparent), 0 2px 6px rgb(0 0 0 / 0.3)",
+        "purpose": "The pin of the open popup, scaled to 1.25."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Every transition on the page."
+      },
+      {
+        "name": "duration-quick",
+        "value": "0.2s",
+        "purpose": "Pins, button feedback, and the fade of open details."
+      },
+      {
+        "name": "duration-row",
+        "value": "0.25s",
+        "purpose": "Row selection wash and the About chevron."
+      },
+      {
+        "name": "duration-expand",
+        "value": "0.32s",
+        "purpose": "Opening a card, turning a chevron, and resizing the map."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "All transitions and animations stop when the phone asks for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "desktop",
+        "value": "60rem",
+        "purpose": "Two columns: the list on the left, the full-height map on the right."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action in an open card or a map popup.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.25\"/></svg>Show on map</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 16px 8px 14px; border: 0; border-radius: 999px; background: var(--accent, #0f6e77); color: var(--on-accent, #ffffff); font: 600 0.9375rem/1.25 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); cursor: pointer; transition: filter 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-primary:hover { filter: brightness(1.08); } .ds-btn-primary:active { filter: brightness(0.94); } .ds-btn-primary:focus-visible { outline: 3px solid var(--accent, #0f6e77); outline-offset: 2px; } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Tonal Button",
+      "kind": "button",
+      "refersTo": "button-tonal",
+      "description": "Source links in an open card. The external icon sits after the label.",
+      "html": "<a class=\"ds-btn-tonal\" href=\"#\">Official restaurant page<svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M14 5h5v5M19 5l-8 8M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4\"/></svg></a>",
+      "css": ".ds-btn-tonal { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 16px; border-radius: 999px; background: var(--tint, #ebf0ef); color: var(--ink, #14292d); font: 600 0.9375rem/1.25 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); text-decoration: none; transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-tonal .ds-icon { color: var(--ink-soft, #5b6d70); } .ds-btn-tonal:hover { background: color-mix(in srgb, var(--ink, #14292d) 10%, var(--tint, #ebf0ef)); } .ds-btn-tonal:focus-visible { outline: 3px solid var(--accent, #0f6e77); outline-offset: 2px; } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Map Controls",
+      "kind": "nav",
+      "refersTo": "map-control",
+      "description": "One white capsule that floats over the map, with a hairline between the two buttons.",
+      "html": "<div class=\"ds-map-tools\"><button class=\"ds-map-btn\" type=\"button\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 9V5h4M16 4h4v4M20 15v4h-4M8 20H4v-4\"/></svg>Show all</button><button class=\"ds-map-btn\" type=\"button\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19.5 4.5 4 10.8l6.6 2.6 2.6 6.6z\"/></svg>My location</button></div>",
+      "css": ".ds-map-tools { display: inline-flex; border-radius: 999px; background: var(--surface, #ffffff); box-shadow: 0 1px 2px rgb(20 41 45 / 0.1), 0 6px 18px rgb(20 41 45 / 0.12); } .ds-map-btn { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 15px 0 13px; border: 0; border-radius: 999px; background: transparent; color: var(--ink, #14292d); font: 600 0.875rem/1 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); cursor: pointer; } .ds-map-btn + .ds-map-btn::before { content: ''; position: absolute; top: 12px; bottom: 12px; left: 0; width: 1px; background: var(--rule, rgb(20 41 45 / 0.1)); } .ds-map-btn .ds-icon { width: 18px; height: 18px; stroke-width: 1.75; color: var(--accent, #0f6e77); } .ds-map-btn:hover { background: var(--tint, #ebf0ef); } .ds-map-btn:focus-visible { outline: 3px solid var(--accent, #0f6e77); outline-offset: 2px; } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Place Row",
+      "kind": "card",
+      "refersTo": "place-row",
+      "description": "A closed restaurant card inside a white area group: token, name, travel times, and a 2-line food summary.",
+      "html": "<div class=\"ds-group\"><article class=\"ds-row\"><span class=\"ds-token\">1</span><div class=\"ds-row-text\"><h3 class=\"ds-row-name\"><button type=\"button\" aria-expanded=\"false\">Monkeypod Kitchen Ko Olina</button></h3><ul class=\"ds-travel\"><li><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"13.5\" cy=\"4.5\" r=\"2\"/><path d=\"m12.5 8.2-1.5 6M12.5 8.2 9 10.3l-1.4 3.2M12.5 8.6l2 3 2.6 1M11 14.2l2.6 3 .5 3.8M11 14.2l-1.5 3.9L7 21\"/></svg>5–10 min</li><li><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5.5 16.5H4a1 1 0 0 1-1-1v-3.3a2 2 0 0 1 .6-1.4L6 8.5l1.3-2.7A1.5 1.5 0 0 1 8.7 5h6.6a1.5 1.5 0 0 1 1.4.8L18 8.5l2.4 2.3a2 2 0 0 1 .6 1.4v3.3a1 1 0 0 1-1 1h-1.5M9.5 16.5h5M6 8.5h12\"/><circle cx=\"7.5\" cy=\"16.5\" r=\"2\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"2\"/></svg>2–5 min</li></ul><p class=\"ds-food\">Wood-fired pizza, highlighted on the restaurant’s official location page.</p></div><svg class=\"ds-icon ds-chevron\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m6 9.5 6 6 6-6\"/></svg></article><article class=\"ds-row\"><span class=\"ds-token\">2</span><div class=\"ds-row-text\"><h3 class=\"ds-row-name\"><button type=\"button\" aria-expanded=\"false\">Roy’s Ko Olina</button></h3><ul class=\"ds-travel\"><li><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5.5 16.5H4a1 1 0 0 1-1-1v-3.3a2 2 0 0 1 .6-1.4L6 8.5l1.3-2.7A1.5 1.5 0 0 1 8.7 5h6.6a1.5 1.5 0 0 1 1.4.8L18 8.5l2.4 2.3a2 2 0 0 1 .6 1.4v3.3a1 1 0 0 1-1 1h-1.5M9.5 16.5h5M6 8.5h12\"/><circle cx=\"7.5\" cy=\"16.5\" r=\"2\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"2\"/></svg>3–5 min</li></ul><p class=\"ds-food\">Misoyaki butterfish and braised short rib.</p></div><svg class=\"ds-icon ds-chevron\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m6 9.5 6 6 6-6\"/></svg></article></div>",
+      "css": ".ds-group { max-width: 380px; overflow: hidden; border-radius: 20px; background: var(--surface, #ffffff); box-shadow: 0 1px 2px rgb(20 41 45 / 0.05); font-family: var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); color: var(--ink, #14292d); } .ds-row { position: relative; display: grid; grid-template-columns: 28px minmax(0, 1fr) 20px; column-gap: 14px; align-items: start; padding: 14px 16px 15px; transition: background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1); } .ds-row + .ds-row::before { content: ''; position: absolute; top: 0; right: 0; left: 58px; height: 1px; background: var(--rule, rgb(20 41 45 / 0.1)); } .ds-row:hover { background: color-mix(in srgb, var(--lagoon, #2b7a80) 6%, var(--surface, #ffffff)); } .ds-token { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--lagoon, #2b7a80); color: var(--on-area, #ffffff); font-size: 0.8125rem; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-row-name { margin: 2px 0 0; font-size: 1.0625rem; font-weight: 650; line-height: 1.3; } .ds-row-name button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; } .ds-row-name button::after { content: ''; position: absolute; inset: 0; } .ds-row-name button:focus-visible { outline: none; } .ds-row-name button:focus-visible::after { border-radius: 14px; outline: 3px solid var(--accent, #0f6e77); outline-offset: -4px; } .ds-travel { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 5px 0 0; padding: 0; list-style: none; color: var(--ink-soft, #5b6d70); font-size: 0.875rem; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-travel li { display: inline-flex; align-items: center; gap: 5px; } .ds-food { display: -webkit-box; margin: 6px 0 0; overflow: hidden; font-size: 0.9375rem; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; } .ds-chevron { width: 20px; height: 20px; margin-top: 3px; stroke-width: 1.75; color: var(--ink-soft, #5b6d70); } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
+    },
+    {
+      "name": "Area Header",
+      "kind": "custom",
+      "refersTo": "area-group",
+      "description": "An area heading with its tone dot in a hanging indent and the place count on the right.",
+      "html": "<div class=\"ds-area-header\"><h2 class=\"ds-area-title\">Nearby in Ko Olina</h2><span class=\"ds-area-count\">3 places</span></div>",
+      "css": ".ds-area-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; max-width: 360px; font-family: var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); color: var(--ink, #14292d); } .ds-area-title { position: relative; margin: 0; padding-left: 18px; font-size: 1.25rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; } .ds-area-title::before { content: ''; position: absolute; top: calc(0.625em - 5px); left: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--lagoon, #2b7a80); } .ds-area-count { color: var(--ink-soft, #5b6d70); font-size: 0.875rem; font-weight: 500; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Note Box",
+      "kind": "card",
+      "refersTo": "note-box",
+      "description": "What the trip-report poster or the commenters said, kept apart from the facts.",
+      "html": "<div class=\"ds-note\"><div class=\"ds-note-label\">Post recommendation</div><div class=\"ds-note-text\">The poster loved Monkeypod but did not name a dish.</div></div>",
+      "css": ".ds-note { max-width: 320px; padding: 12px 14px 13px; border-radius: 14px; background: var(--note, #f6efdb); font-family: var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); } .ds-note-label { color: var(--note-ink, #75571a); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; } .ds-note-text { margin-top: 2px; color: var(--ink, #14292d); font-size: 1rem; line-height: 1.5; }"
+    },
+    {
+      "name": "Map Pins and Cluster",
+      "kind": "custom",
+      "refersTo": "map-cluster",
+      "description": "A tone pin, the selected pin, the hotel pin, and a white cluster capsule with a count.",
+      "html": "<div class=\"ds-pins\"><span class=\"ds-pin\">4</span><span class=\"ds-pin ds-pin-selected\">12</span><span class=\"ds-pin ds-pin-home\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5 3 11.2h2.6V20h4.8v-5.6h3.2V20h4.8v-8.8H21z\"/></svg></span><span class=\"ds-cluster\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5 3 11.2h2.6V20h4.8v-5.6h3.2V20h4.8v-8.8H21z\"/></svg>5</span><span class=\"ds-cluster\">30</span></div>",
+      "css": ".ds-pins { display: flex; align-items: center; gap: 18px; padding: 20px; border-radius: 16px; background: var(--sea, #cfe3e5); font-family: var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); } .ds-pin { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid var(--surface, #ffffff); border-radius: 50%; background: var(--ahi, #b4534f); color: var(--on-area, #ffffff); font: 700 0.8125rem/1 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); font-variant-numeric: tabular-nums; box-shadow: 0 1px 3px rgb(0 0 0 / 0.28); transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1); } .ds-pin:hover { transform: scale(1.1); } .ds-pin-selected { background: var(--tileaf, #4d7a45); transform: scale(1.25); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tileaf, #4d7a45) 30%, transparent), 0 2px 6px rgb(0 0 0 / 0.3); } .ds-pin-home { border-radius: 9px; background: var(--home, #14292d); } .ds-pin-home svg { width: 16px; height: 16px; fill: var(--surface, #ffffff); } .ds-cluster { display: inline-flex; align-items: center; justify-content: center; gap: 3px; min-width: 36px; height: 36px; padding: 0 10px; border-radius: 999px; background: var(--surface, #ffffff); color: var(--ink, #14292d); font: 700 0.875rem/1 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); font-variant-numeric: tabular-nums; box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--ink, #14292d) 14%, transparent), 0 1px 2px rgb(20 41 45 / 0.1), 0 6px 18px rgb(20 41 45 / 0.12); } .ds-cluster svg { width: 15px; height: 15px; fill: var(--ink, #14292d); }"
+    },
+    {
+      "name": "Offline Status",
+      "kind": "custom",
+      "refersTo": "status-toast",
+      "description": "The meta line under the title: place count and offline state.",
+      "html": "<p class=\"ds-meta\"><span>52 places in 9 areas</span><span class=\"ds-offline\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg>Ready to use offline</span></p>",
+      "css": ".ds-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin: 0; color: var(--ink-soft, #5b6d70); font: 500 0.9375rem/1.5 var(--font, 'Atkinson Hyperlegible Next', -apple-system, system-ui, sans-serif); font-variant-numeric: tabular-nums; } .ds-offline { display: inline-flex; align-items: center; gap: 5px; } .ds-offline .ds-icon { color: var(--accent, #0f6e77); } .ds-icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Pocket Field Guide",
+    "overview": "The site is a field guide that the group carries on the island. A field guide is clear before it is pretty. It names each thing, says where it is, and says who vouched for it. The visual system follows the same order: legible type, plain facts, and a map that you can read at a glance. The mood is clean, modern, and relaxed. Nothing on the page competes for attention.\n\nThe page is calm and open. A soft blue-green map sits at the top. White groups of restaurants rest on a pale, cool ground below it. Lagoon Teal is the only action color. Small colored dots connect each restaurant in the list to its pin on the map. The components are soft and friendly: round capsules, rounded white groups, and gentle shadows only where something floats over the map.\n\nThe system replaced an earlier, louder look: bright cyan water, nine saturated area colors on headings and buttons, and extra-bold type on every line. That look is the visual anti-reference.",
+    "keyCharacteristics": [
+      "One accent color, Lagoon Teal, for actions, the address link, and focus.",
+      "Muted area tones in small circles only.",
+      "One typeface, Atkinson Hyperlegible Next, with a tight scale and no weight above 700.",
+      "A summary first: name, travel time, and food. Details open on a touch.",
+      "White grouped lists with thin dividers, in the style of an iPhone settings list.",
+      "A calm map palette that matches the page in light and dark."
+    ],
+    "rules": [
+      {
+        "name": "The One Lagoon Rule",
+        "body": "Lagoon Teal is the only color that means \"you can act here\". Do not use any other hue for buttons, links, or focus.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small Dots Rule",
+        "body": "Area tones appear only in circles of 28 px or less and in the 10 px heading dot. Never color a heading, a paragraph, or a button with an area tone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never Gray on Color Rule",
+        "body": "Text on Beach Sand uses Tidemark Ochre or Deep Channel Ink, never Weathered Teal Gray.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Shouting Rule",
+        "body": "The heaviest weight is 700, and only the title and area headings use it. Restaurant names use 650. Never use 800 or uppercase text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Legibility Floor Rule",
+        "body": "Text that people read is 16 px or larger. Only meta text, labels, and numerals go down to 13 px.",
+        "section": "typography"
+      },
+      {
+        "name": "The Summary First Rule",
+        "body": "A closed card shows only the name, the travel time, and the food. All other fields wait behind a touch.",
+        "section": "layout"
+      },
+      {
+        "name": "The Float Over Map Rule",
+        "body": "Only elements that sit on top of the map cast a real shadow. Content in the list never floats.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Capsule Rule",
+        "body": "If you can touch it and it is a button, it is a capsule at least 44 px tall.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** use Lagoon Teal for every action, the address link, and focus, and for nothing else.",
+      "**Do** keep area tones in the 28 px tokens and pins and the 10 px heading dot.",
+      "**Do** keep reading text at 16 px or larger and all text at WCAG AA contrast in light and dark.",
+      "**Do** make every touch target at least 44 px tall.",
+      "**Do** show the name, the travel time, and the food first, and put everything else behind a touch.",
+      "**Do** use the Beach Sand note box for what the poster and the commenters said.",
+      "**Do** keep the map palette in `map-theme.js` in step with the page colors in both appearances.",
+      "**Do** keep motion short (0.2 s to 0.32 s, ease out) and turn it off for reduced motion."
+    ],
+    "donts": [
+      "**Don't** return to bright cyan map water (#80deea) or saturated area colors on headings and buttons.",
+      "**Don't** use a font weight above 700 or uppercase text.",
+      "**Don't** use a colored bar on the left side of a note. Use the tinted note box.",
+      "**Don't** put shadows on content in the list. Shadows are for things that float over the map.",
+      "**Don't** use gray text on Beach Sand or on an area tone.",
+      "**Don't** use emoji or text symbols as icons."
+    ]
+  }
+}

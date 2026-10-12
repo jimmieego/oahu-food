@@ -1,8 +1,35 @@
+import { MAP_FLAVORS } from './map-theme.js';
 import { escapeHtml, parseShortlist, plainText, renderInline } from './parse.js';
 
 const DATA_URL = 'restaurants.md';
 const AREA_TONES = ['lagoon', 'ahi', 'ube', 'tileaf', 'lilikoi', 'reef', 'hibiscus', 'koa', 'slate'];
 const HIDDEN_FIELD_ROLES = new Set(['coordinates', 'sources']);
+const icon = (paths, extraClass = '') =>
+    `<svg class="icon${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
+const ICONS = {
+    walk: icon(
+        '<circle cx="13.5" cy="4.5" r="2"/><path d="m12.5 8.2-1.5 6M12.5 8.2 9 10.3l-1.4 3.2M12.5 8.6l2 3 2.6 1M11 14.2l2.6 3 .5 3.8M11 14.2l-1.5 3.9L7 21"/>'
+    ),
+    drive: icon(
+        '<path d="M5.5 16.5H4a1 1 0 0 1-1-1v-3.3a2 2 0 0 1 .6-1.4L6 8.5l1.3-2.7A1.5 1.5 0 0 1 8.7 5h6.6a1.5 1.5 0 0 1 1.4.8L18 8.5l2.4 2.3a2 2 0 0 1 .6 1.4v3.3a1 1 0 0 1-1 1h-1.5M9.5 16.5h5M6 8.5h12"/><circle cx="7.5" cy="16.5" r="2"/><circle cx="16.5" cy="16.5" r="2"/>'
+    ),
+    chevron: icon('<path d="m6 9.5 6 6 6-6"/>', ' place-chevron'),
+    pin: icon('<path d="M12 21s-6.5-5.5-6.5-11a6.5 6.5 0 0 1 13 0c0 5.5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.25"/>'),
+    external: icon('<path d="M14 5h5v5M19 5l-8 8M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4"/>'),
+    saving: icon('<path d="M12 4.5v10M7.5 10l4.5 4.5 4.5-4.5M5 19.5h14"/>'),
+    ready: icon('<path d="m5 12.5 4.5 4.5L19 7.5"/>'),
+    offline: icon(
+        '<path d="M3.5 9.6A12 12 0 0 1 8 7.1M12.6 6.5a12 12 0 0 1 7.9 3.1M7 13.1a7 7 0 0 1 3.4-1.6M15.4 12.1a7 7 0 0 1 1.6 1M12 17.5h.01M4 4l16 16"/>'
+    ),
+    failed: icon('<circle cx="12" cy="12" r="8.25"/><path d="M12 8v4.5M12 15.75h.01"/>'),
+};
+const OFFLINE_MESSAGES = {
+    saving: ['saving', 'Saving the map for offline use'],
+    ready: ['ready', 'Ready to use offline'],
+    failed: ['failed', 'Map not saved yet. It saves on your next visit.'],
+    offlineSaved: ['offline', 'Offline. You see the saved copy.'],
+    offlineMissing: ['offline', 'Offline. The map is not saved on this phone.'],
+};
 const TILES_URL = 'tiles/oahu.pmtiles';
 const TILES_MAX_ZOOM = 15;
 const TILE_ATTRIBUTION =
@@ -14,9 +41,9 @@ const OAHU_BOUNDS = [
 const HOME_GLYPH =
     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 3 11.2h2.6V20h4.8v-5.6h3.2V20h4.8v-8.8H21z"/></svg>';
 const DETAIL_ZOOM = 16;
-const PIN_SIZE = 30;
-const STACK_STEP = 20;
-const STACK_LIMIT = 5;
+const PIN_SIZE = 28;
+const CLUSTER_SIZE = 36;
+const CLUSTER_HOME_WIDTH = 18;
 const STATUS_DURATION_MS = 6000;
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -24,6 +51,9 @@ const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
 const elements = {
     title: document.getElementById('title'),
+    meta: document.getElementById('meta'),
+    count: document.getElementById('count'),
+    offlineStatus: document.getElementById('offline-status'),
     about: document.getElementById('about'),
     aboutBody: document.getElementById('about-body'),
     mapFrame: document.getElementById('map-frame'),
@@ -31,6 +61,7 @@ const elements = {
     showAll: document.getElementById('show-all'),
     locate: document.getElementById('locate'),
     mapSize: document.getElementById('map-size'),
+    mapSizeLabel: document.getElementById('map-size-label'),
     mapStatus: document.getElementById('map-status'),
     places: document.getElementById('places'),
 };
@@ -45,7 +76,14 @@ const state = {
     statusTimer: 0,
 };
 
+const offline = {
+    isMapSaved: false,
+    isSaving: false,
+    hasFailed: false,
+};
+
 const toneFor = (place) => AREA_TONES[place.sectionIndex % AREA_TONES.length];
+const countLabel = (count, one, many) => (count === 1 ? `1 ${one}` : `${count} ${many}`);
 const scrollBehavior = () => (reducedMotion.matches ? 'auto' : 'smooth');
 const mapFlavor = () => (darkScheme.matches ? 'dark' : 'light');
 const searchName = (place) =>
@@ -69,29 +107,53 @@ function renderFact(place, field) {
     return `<div class="fact fact--${field.role}"><dt>${escapeHtml(field.label)}</dt><dd>${value}</dd></div>`;
 }
 
+function renderTravel(place) {
+    if (place.travel.length === 0) {
+        return '';
+    }
+    const items = place.travel
+        .map(
+            (item) =>
+                `<li class="travel-item">${ICONS[item.mode]}<span>${escapeHtml(item.duration)}</span><span class="visually-hidden"> ${item.mode}</span></li>`
+        )
+        .join('');
+    return `<ul class="travel" aria-label="Travel time">${items}</ul>`;
+}
+
 function renderPlace(place) {
-    const facts = place.fields.filter((field) => !HIDDEN_FIELD_ROLES.has(field.role));
-    const travel = place.travel.map((item) => `<li class="travel-chip">${escapeHtml(item.text)}</li>`).join('');
+    const food = place.fields.find((field) => field.role === 'food');
+    const facts = place.fields.filter((field) => field !== food && !HIDDEN_FIELD_ROLES.has(field.role));
     const notes = place.notes.map((note) => `<p class="place-note">${renderInline(note)}</p>`).join('');
     const links = place.links
         .map(
             (link) =>
-                `<a class="action" href="${escapeHtml(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.text)}</a>`
+                `<a class="action" href="${escapeHtml(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.text)}${ICONS.external}</a>`
         )
         .join('');
     const mapAction = place.coordinates
-        ? `<button class="action action--primary" type="button" data-show-on-map="${place.id}">Show on map</button>`
+        ? `<button class="action action--primary" type="button" data-show-on-map="${place.id}">${ICONS.pin}Show on map</button>`
         : '<p class="place-missing">Not on the map yet. Add a Coordinates line for this place in restaurants.md.</p>';
+    const foodPreview = food
+        ? `<p class="place-food"><span class="visually-hidden">${escapeHtml(food.label)}: </span>${escapeHtml(plainText(food.value))}</p>`
+        : '';
 
     return `
         <article class="place tone-${toneFor(place)}" id="${place.id}" aria-labelledby="${place.id}-name">
-            <span class="place-token" aria-hidden="true">${place.number}</span>
-            <div class="place-body">
-                <h3 class="place-name" id="${place.id}-name" tabindex="-1"><span class="visually-hidden">${place.number}. </span>${renderInline(place.name)}</h3>
-                ${travel ? `<ul class="travel" aria-label="Travel time">${travel}</ul>` : ''}
-                ${facts.length > 0 ? `<dl class="facts">${facts.map((field) => renderFact(place, field)).join('')}</dl>` : ''}
-                ${notes}
-                <div class="place-actions">${mapAction}${links}</div>
+            <div class="place-summary">
+                <span class="place-token" aria-hidden="true">${place.number}</span>
+                <div class="place-heading">
+                    <h3 class="place-name" id="${place.id}-name"><button class="place-toggle" type="button" aria-expanded="false" aria-controls="${place.id}-details" data-toggle="${place.id}"><span class="visually-hidden">${place.number}. </span>${escapeHtml(plainText(place.name))}</button></h3>
+                    ${renderTravel(place)}
+                    ${foodPreview}
+                </div>
+                ${ICONS.chevron}
+            </div>
+            <div class="place-details" id="${place.id}-details" inert>
+                <div class="place-details-inner">
+                    ${facts.length > 0 ? `<dl class="facts">${facts.map((field) => renderFact(place, field)).join('')}</dl>` : ''}
+                    ${notes}
+                    <div class="place-actions">${mapAction}${links}</div>
+                </div>
             </div>
         </article>`;
 }
@@ -99,11 +161,16 @@ function renderPlace(place) {
 function renderSection(section) {
     const tone = AREA_TONES[section.index % AREA_TONES.length];
     const intro = section.intro.map((text) => `<p class="area-intro">${renderInline(text)}</p>`).join('');
+    const places =
+        section.places.length > 0 ? `<div class="area-places">${section.places.map(renderPlace).join('')}</div>` : '';
     return `
         <section class="area tone-${tone}" aria-labelledby="area-${section.index}">
-            <h2 class="area-title" id="area-${section.index}">${renderInline(section.name)}</h2>
+            <div class="area-header">
+                <h2 class="area-title" id="area-${section.index}">${renderInline(section.name)}</h2>
+                <span class="area-count">${countLabel(section.places.length, 'place', 'places')}</span>
+            </div>
             ${intro}
-            ${section.places.map(renderPlace).join('')}
+            ${places}
         </section>`;
 }
 
@@ -121,14 +188,22 @@ function renderPage(shortlist) {
             '<p class="status-message">No restaurants yet. Add a "### Restaurant name" heading for each place in restaurants.md.</p>';
         return;
     }
+    elements.count.textContent = `${countLabel(shortlist.places.length, 'place', 'places')} in ${countLabel(
+        shortlist.sections.length,
+        'area',
+        'areas'
+    )}`;
+    elements.meta.hidden = false;
     elements.places.innerHTML = shortlist.sections.map(renderSection).join('');
 }
 
 function renderLoadError(error) {
-    const hint =
-        window.location.protocol === 'file:'
-            ? 'Open the site through a web server, not as a file. The README shows a one-line command.'
-            : 'Make sure restaurants.md is in the same folder as index.html, then reload the page.';
+    let hint = 'Make sure restaurants.md is in the same folder as index.html, then reload the page.';
+    if (window.location.protocol === 'file:') {
+        hint = 'Open the site through a web server, not as a file. The README shows a one-line command.';
+    } else if (!navigator.onLine) {
+        hint = 'You are offline, and this phone has no saved copy yet. Open the site once with a connection.';
+    }
     elements.mapFrame.hidden = true;
     elements.places.innerHTML = `<div class="status-message"><p><strong>Could not load restaurants.md.</strong></p><p>${hint}</p></div>`;
     console.error(error);
@@ -151,19 +226,14 @@ function placeIcon(token) {
 }
 
 function clusterIcon(cluster) {
-    const tokens = cluster
-        .getAllChildMarkers()
-        .map((marker) => marker.options.token)
-        .sort((a, b) => a.number - b.number);
-    const shown = tokens.slice(0, STACK_LIMIT);
-    const extra = tokens.length - shown.length;
-    const more = extra > 0 ? `<span class="pin pin--more">+${extra}</span>` : '';
-    const slots = shown.length + (extra > 0 ? 1 : 0);
-    const width = 8 + PIN_SIZE + STACK_STEP * (slots - 1);
+    const tokens = cluster.getAllChildMarkers().map((marker) => marker.options.token);
+    const count = tokens.filter((token) => token.kind === 'place').length;
+    const hasHome = tokens.some((token) => token.kind === 'home');
+    const description = `${countLabel(count, 'place', 'places')}${hasHome ? ' and the starting point' : ''}. Zoom in to see each one.`;
     return window.L.divIcon({
         className: 'pin-anchor',
-        html: `<span class="pin-stack">${shown.map(pinHtml).join('')}${more}<span class="visually-hidden">${tokens.length} places. Zoom in to see each one.</span></span>`,
-        iconSize: [width, PIN_SIZE + 8],
+        html: `<span class="cluster">${hasHome ? HOME_GLYPH : ''}<span aria-hidden="true">${count}</span><span class="visually-hidden">${description}</span></span>`,
+        iconSize: [CLUSTER_SIZE + (hasHome ? CLUSTER_HOME_WIDTH : 0), CLUSTER_SIZE],
     });
 }
 
@@ -206,7 +276,20 @@ function select(id) {
 function setMapLarge(isLarge) {
     document.documentElement.classList.toggle('map-large', isLarge);
     elements.mapSize.setAttribute('aria-pressed', String(isLarge));
-    elements.mapSize.textContent = isLarge ? 'Smaller map' : 'Larger map';
+    elements.mapSizeLabel.textContent = isLarge ? 'Smaller map' : 'Larger map';
+}
+
+function setOpen(id, isOpen) {
+    const entry = document.getElementById(id);
+    if (!entry) {
+        return;
+    }
+    entry.classList.toggle('is-open', isOpen);
+    entry.querySelector('.place-toggle')?.setAttribute('aria-expanded', String(isOpen));
+    const details = entry.querySelector('.place-details');
+    if (details) {
+        details.inert = !isOpen;
+    }
 }
 
 function showStatus(message) {
@@ -248,9 +331,10 @@ function showDetails(id) {
     if (!entry) {
         return;
     }
+    setOpen(id, true);
     setMapLarge(false);
     entry.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
-    entry.querySelector('.place-name')?.focus({ preventScroll: true });
+    entry.querySelector('.place-toggle')?.focus({ preventScroll: true });
 }
 
 function locate() {
@@ -290,7 +374,7 @@ function handleLocationError(event) {
 
 function initMap(shortlist) {
     const L = window.L;
-    if (!L?.markerClusterGroup || !window.protomapsL) {
+    if (!L?.markerClusterGroup || !window.protomapsL?.paintRules) {
         elements.mapFrame.hidden = true;
         document.documentElement.classList.add('no-map');
         return;
@@ -307,15 +391,18 @@ function initMap(shortlist) {
         fadeAnimation: isAnimated,
         markerZoomAnimation: isAnimated,
     });
-    const makeBasemap = () =>
-        window.protomapsL.leafletLayer({
+    const makeBasemap = () => {
+        const flavor = MAP_FLAVORS[mapFlavor()];
+        return window.protomapsL.leafletLayer({
             url: TILES_URL,
-            flavor: mapFlavor(),
-            lang: 'en',
+            paintRules: window.protomapsL.paintRules(flavor),
+            labelRules: window.protomapsL.labelRules(flavor, 'en'),
+            backgroundColor: flavor.background,
             attribution: TILE_ATTRIBUTION,
             maxDataZoom: TILES_MAX_ZOOM,
             bounds: OAHU_BOUNDS,
         });
+    };
     let basemap = makeBasemap().addTo(map);
     darkScheme.addEventListener('change', () => {
         map.removeLayer(basemap);
@@ -323,7 +410,7 @@ function initMap(shortlist) {
     });
 
     const cluster = L.markerClusterGroup({
-        maxClusterRadius: 36,
+        maxClusterRadius: 44,
         disableClusteringAtZoom: 17,
         showCoverageOnHover: false,
         animate: isAnimated,
@@ -353,7 +440,11 @@ function initMap(shortlist) {
             title: plainText(place.name),
             token,
         });
-        marker.bindPopup(() => popupContent(place), { maxWidth: 260, autoPanPadding: [16, 16] });
+        marker.bindPopup(() => popupContent(place), {
+            maxWidth: 260,
+            autoPanPaddingTopLeft: [16, 72],
+            autoPanPaddingBottomRight: [16, 72],
+        });
         marker.on('popupopen', () => select(place.id));
         marker.on('popupclose', () => {
             if (state.selectedId === place.id) {
@@ -392,7 +483,84 @@ function initMap(shortlist) {
     });
 }
 
+function handleToggle(event) {
+    const toggle = event.target.closest('[data-toggle]');
+    if (toggle) {
+        setOpen(toggle.dataset.toggle, toggle.getAttribute('aria-expanded') !== 'true');
+    }
+}
+
+function renderOfflineStatus() {
+    let key = null;
+    if (!navigator.onLine) {
+        key = offline.isMapSaved ? 'offlineSaved' : 'offlineMissing';
+    } else if (offline.isMapSaved) {
+        key = 'ready';
+    } else if (offline.hasFailed) {
+        key = 'failed';
+    } else if (offline.isSaving) {
+        key = 'saving';
+    }
+    if (!key) {
+        elements.offlineStatus.textContent = '';
+        return;
+    }
+    const [iconName, text] = OFFLINE_MESSAGES[key];
+    elements.offlineStatus.dataset.state = iconName;
+    elements.offlineStatus.innerHTML = `${ICONS[iconName]}${escapeHtml(text)}`;
+}
+
+async function requestMapSave() {
+    offline.isSaving = true;
+    offline.hasFailed = false;
+    renderOfflineStatus();
+    const registration = await navigator.serviceWorker.ready;
+    registration.active?.postMessage({ type: 'save-map' });
+}
+
+function handleWorkerMessage(event) {
+    if (event.data?.type === 'map-saved') {
+        offline.isMapSaved = true;
+    } else if (event.data?.type === 'map-failed') {
+        offline.hasFailed = true;
+        console.error(event.data.message);
+    } else {
+        return;
+    }
+    offline.isSaving = false;
+    renderOfflineStatus();
+}
+
+async function startOffline() {
+    if (!('serviceWorker' in navigator)) {
+        return;
+    }
+    navigator.serviceWorker.addEventListener('message', handleWorkerMessage);
+    window.addEventListener('offline', renderOfflineStatus);
+    window.addEventListener('online', () => {
+        if (offline.isMapSaved) {
+            renderOfflineStatus();
+        } else {
+            requestMapSave();
+        }
+    });
+    try {
+        await navigator.serviceWorker.register('sw.js');
+        navigator.storage?.persist?.();
+        offline.isMapSaved = Boolean(await caches.match(new URL(TILES_URL, document.baseURI).href));
+    } catch (error) {
+        console.error(error);
+        return;
+    }
+    if (offline.isMapSaved || !navigator.onLine) {
+        renderOfflineStatus();
+    } else {
+        requestMapSave();
+    }
+}
+
 async function main() {
+    startOffline();
     let shortlist;
     try {
         const response = await fetch(DATA_URL, { cache: 'no-cache' });
@@ -405,6 +573,7 @@ async function main() {
         return;
     }
     renderPage(shortlist);
+    elements.places.addEventListener('click', handleToggle);
     initMap(shortlist);
 }
 

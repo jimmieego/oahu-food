@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <title>Oahu food shortlist</title>
         <meta name="description" content="Restaurant shortlist and map for a trip to Oahu." />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#0c1d20" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#f3f5f4" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0d1618" media="(prefers-color-scheme: dark)" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="Oahu food" />
@@ -34,6 +34,10 @@
     <body>
         <header class="masthead">
             <h1 class="masthead-title" id="title">Oahu food shortlist</h1>
+            <p class="masthead-meta" id="meta" hidden>
+                <span id="count"></span>
+                <span class="offline-status" id="offline-status" role="status"></span>
+            </p>
             <details class="about" id="about" hidden>
                 <summary>About this list</summary>
                 <div class="about-body" id="about-body"></div>
@@ -43,11 +47,22 @@
         <div class="map-frame" id="map-frame">
             <div class="map" id="map" role="region" aria-label="Map of the restaurants"></div>
             <div class="map-tools">
-                <button class="map-button" type="button" id="show-all">Show all</button>
-                <button class="map-button" type="button" id="locate">My location</button>
+                <button class="map-button" type="button" id="show-all">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 9V5h4M16 4h4v4M20 15v4h-4M8 20H4v-4" />
+                    </svg>
+                    Show all
+                </button>
+                <button class="map-button" type="button" id="locate">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19.5 4.5 4 10.8l6.6 2.6 2.6 6.6z" />
+                    </svg>
+                    My location
+                </button>
             </div>
             <button class="map-button map-button--size" type="button" id="map-size" aria-pressed="false">
-                Larger map
+                <svg class="icon icon--size" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9.5 6 6 6-6" /></svg>
+                <span id="map-size-label">Larger map</span>
             </button>
             <p class="map-status" id="map-status" role="status"></p>
         </div>

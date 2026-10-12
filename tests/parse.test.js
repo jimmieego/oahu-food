@@ -115,6 +115,13 @@ describe('summarizeTravel', () => {
             );
         });
     }
+
+    it('keeps the duration apart from the mode', () => {
+        assert.deepEqual(summarizeTravel('5–10 minutes walking, or 2–5 minutes driving.'), [
+            { mode: 'walk', duration: '5–10 min', text: '5–10 min walk' },
+            { mode: 'drive', duration: '2–5 min', text: '2–5 min drive' },
+        ]);
+    });
 });
 
 describe('parseShortlist', () => {

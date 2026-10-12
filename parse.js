@@ -90,7 +90,8 @@ export function summarizeTravel(text) {
         }
         modes.add(mode);
         const shortUnit = /^h/i.test(unit) ? 'hr' : 'min';
-        summary.push({ mode, text: `${amount.replace(/\s*[–-]\s*/, '–')} ${shortUnit} ${mode}` });
+        const duration = `${amount.replace(/\s*[–-]\s*/, '–')} ${shortUnit}`;
+        summary.push({ mode, duration, text: `${duration} ${mode}` });
     }
     return summary;
 }

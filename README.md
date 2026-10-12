@@ -4,7 +4,7 @@ A static website that shows the restaurant shortlist as a list and a map. It is 
 
 All the content comes from `restaurants.md`. To change the site, edit that file. You do not need a build step.
 
-The site is self-contained. The map tiles for Oahu, the map libraries, and the font are in this folder. The site does not need an API key or any other service.
+The site is self-contained. The map tiles for Oahu, the map libraries, and the font are in this folder. The site does not need an API key or any other service. After the first visit, the site also works with no connection. See [Use the site offline](#use-the-site-offline).
 
 ## Files
 
@@ -12,6 +12,8 @@ The site is self-contained. The map tiles for Oahu, the map libraries, and the f
 |---|---|
 | `restaurants.md` | The restaurant list. Edit this file. |
 | `index.html`, `styles.css`, `app.js` | The page, the styles, and the map code. |
+| `map-theme.js` | The map colors for the light appearance and the dark appearance. |
+| `sw.js` | The service worker. It saves the site and the map on the phone for offline use. |
 | `parse.js` | Reads `restaurants.md` and converts it into data for the page. |
 | `tests/parse.test.js` | Tests for the parser. Also checks that each restaurant has coordinates. |
 | `tiles/oahu.pmtiles` | The map of Oahu, zoom levels 0 to 15, in one file (11 MB). |
@@ -43,11 +45,13 @@ Rules for the format:
 
 - Each restaurant starts with a `###` heading. The site numbers the restaurants in the order they appear. Numbers in the heading, such as `### 9.`, are optional.
 - Each field is a bullet in the form `- **Label:** value`. You can use any label. The site shows the fields in the order you write them.
+- The list shows a summary of each restaurant: the name, the travel time, and the food to consider. Touch a restaurant to see the other fields and the links.
 - Some labels have a special use:
   - `Coordinates` puts the pin on the map. The site does not show this line.
   - `Address` becomes a link that opens Apple Maps.
   - A label that contains "travel time" gives the short time labels under the name, for example "2–5 min drive". Write the time as "25–40 minutes driving" or "5 minutes walking".
-  - A label that contains "post" gets a yellow quote bar. Use it for what the Reddit poster said.
+  - A label that contains "food", "dish", "order", or "menu" shows in the summary, under the travel time.
+  - A label that contains "post" gets a yellow box. Use it for what the Reddit poster said.
   - `Sources` turns each Markdown link into a button.
 - You can use `**bold**`, `*italic*`, and `[links](https://example.com)` in any value.
 
@@ -105,7 +109,31 @@ To use the site like an app:
 2. Touch the Share button.
 3. Select "Add to Home Screen".
 
-After you change `restaurants.md`, push the new version. The site always loads the newest copy of the file.
+After you change `restaurants.md`, push the new version. When the phone has a connection, the site loads the newest copy of the file. If the server does not answer in 3 seconds, the site shows the saved copy.
+
+## Use the site offline
+
+On the first visit, the site saves itself and the map on the phone. The map file is 11 MB. Each person in the group does these steps on their own phone, on Wi-Fi, before the trip:
+
+1. Add the site to the home screen. See [Put the site on your iPhone](#put-the-site-on-your-iphone).
+2. Open the site from the home screen.
+3. Wait until the site shows "Ready to use offline".
+
+The home screen app and Safari keep separate saved copies. A copy that Safari saved does not work in the home screen app.
+
+Under the title, the site shows the offline state:
+
+- "Saving the map for offline use": the download is in progress. Keep the site open.
+- "Ready to use offline": the list and the map work with no connection.
+- "Offline. You see the saved copy.": the phone has no connection. The list is from the last visit with a connection.
+
+Safari can delete the saved data of a website that you do not open for 7 days. It does not do this for a site on the home screen.
+
+Directions open in Apple Maps or Google Maps. These apps need a connection, unless you download the Oahu map in the app before the trip.
+
+After you change `app.js`, `styles.css`, or `index.html`, the phone shows the change on the second visit. The first visit downloads the new file in the background.
+
+If you replace a file in `vendor/` or `icons/`, increase `SHELL_VERSION` at the top of `sw.js` by 1. Otherwise phones keep the old file.
 
 ## Update the map tiles
 
@@ -119,10 +147,12 @@ pmtiles extract https://build.protomaps.com/YYYYMMDD.pmtiles tiles/oahu.pmtiles 
 
 Replace `YYYYMMDD` with a recent date, for example `20261012`. The list of builds is at <https://maps.protomaps.com/builds/>. Do not download tiles from the OpenStreetMap tile servers. Their usage policy does not allow bulk downloads.
 
+Then change `TILES_VERSION` at the top of `sw.js` to the same date. This tells the phones to delete the old saved map and save the new one.
+
 ## What is in the vendor folder
 
 - [Leaflet](https://leafletjs.com/) 1.9.4 and [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) 1.5.3 show the map and the pins.
-- [protomaps-leaflet](https://github.com/protomaps/protomaps-leaflet) 5.1.0 draws the map from `tiles/oahu.pmtiles`. It has a light style and a dark style. The site uses the style that matches the iPhone appearance setting.
+- [protomaps-leaflet](https://github.com/protomaps/protomaps-leaflet) 5.1.0 draws the map from `tiles/oahu.pmtiles`. The map colors are in `map-theme.js`. The site uses the light colors or the dark colors to match the iPhone appearance setting.
 - [Atkinson Hyperlegible Next](https://fonts.google.com/specimen/Atkinson+Hyperlegible+Next) is the font. The Braille Institute designed it for easy reading.
 
 Map data is &copy; [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. If the map libraries do not load, the list still works without the map.

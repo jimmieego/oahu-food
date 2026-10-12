@@ -4,11 +4,9 @@
 
 **Starting point coordinates:** 21.33930, -158.12574
 
-**Original recommendations:** [O’ahu Trip Recap on Reddit](https://www.reddit.com/r/VisitingHawaii/comments/1x1a3l4/oahu_trip_recap/?sort=new).
-
 Travel times below are approximate, one-way planning estimates from the hotel. Driving ranges are rounded from Google Maps routes and include some traffic allowance, but exclude parking and walking from the car. H-1 rush-hour traffic can take longer.
 
-Food notes distinguish the poster’s recommendations from restaurant menu highlights. Among these eight options, **Bogart’s fried rice is the only specific dish named in the post**.
+The recommendations come from another traveler's Oahu trip report. In the notes, "the poster" is that traveler. Each place keeps what the poster said apart from the restaurant's own menu highlights. **Bogart's fried rice is the only dish that the poster named.**
 
 ## Nearby in Ko Olina
 

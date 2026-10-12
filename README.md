@@ -15,11 +15,14 @@ The site is self-contained. The map tiles for Oahu, the map libraries, and the f
 | `map-theme.js` | The map colors for the light appearance and the dark appearance. |
 | `sw.js` | The service worker. It saves the site and the map on the phone for offline use. |
 | `parse.js` | Reads `restaurants.md` and converts it into data for the page. |
+| `search.js` | Finds the restaurants that match the words in the search field. |
 | `tests/parse.test.js` | Tests for the parser. Also checks that each restaurant has coordinates. |
+| `tests/search.test.js` | Tests for the search. |
 | `tiles/oahu.pmtiles` | The map of Oahu, zoom levels 0 to 15, in one file (11 MB). |
 | `vendor/` | Leaflet, Leaflet.markercluster, protomaps-leaflet, and the font, with their licenses. |
 | `manifest.webmanifest`, `icons/` | The name and icon for the iPhone home screen. |
 | `.nojekyll` | Stops GitHub Pages from converting the Markdown files into HTML pages. Do not delete it. |
+| `PRODUCT.md`, `DESIGN.md`, `.impeccable/` | Notes about the users and the visual design, for future design work. The site does not use them. |
 
 ## Search
 

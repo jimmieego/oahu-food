@@ -167,6 +167,11 @@ describe('parseShortlist', () => {
         assert.equal(second.fields[1].role, 'note');
     });
 
+    it('treats commenter notes like post notes', () => {
+        const parsed = parseShortlist('### Place\n- **Commenter recommendation:** Two commenters liked it.');
+        assert.equal(parsed.places[0].fields[0].role, 'post');
+    });
+
     it('joins indented continuation lines', () => {
         assert.equal(first.fields[4].value, 'The poster loved it and went back twice.');
     });

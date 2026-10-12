@@ -3,7 +3,7 @@ const ROLE_PATTERNS = [
     ['address', /^address$/i],
     ['sources', /^(sources?|links?)$/i],
     ['travel', /travel|^drive|^walk/i],
-    ['post', /post|reddit/i],
+    ['post', /post|reddit|comment/i],
     ['food', /food|dish|order|menu/i],
 ];
 

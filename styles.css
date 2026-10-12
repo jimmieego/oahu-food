@@ -20,6 +20,10 @@
     --ube: #6b4fb8;
     --tileaf: #3e7b2e;
     --lilikoi: #a5520a;
+    --reef: #1d5fa8;
+    --hibiscus: #b0287a;
+    --koa: #7a5230;
+    --slate: #4a5a6a;
     --plumeria: #f2b632;
     --sea: #80deea;
     --area: var(--lagoon);
@@ -46,6 +50,10 @@
         --ube: #b9a4ff;
         --tileaf: #8fce76;
         --lilikoi: #f4a55e;
+        --reef: #7fb2ff;
+        --hibiscus: #ff8fcf;
+        --koa: #d9a877;
+        --slate: #aebccb;
         --plumeria: #f5c451;
         --sea: #31353f;
         --shadow-float: 0 1px 2px rgb(0 0 0 / 0.5), 0 4px 14px rgb(0 0 0 / 0.4);
@@ -75,6 +83,22 @@
 
 .tone-lilikoi {
     --area: var(--lilikoi);
+}
+
+.tone-reef {
+    --area: var(--reef);
+}
+
+.tone-hibiscus {
+    --area: var(--hibiscus);
+}
+
+.tone-koa {
+    --area: var(--koa);
+}
+
+.tone-slate {
+    --area: var(--slate);
 }
 
 *,

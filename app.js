@@ -1,7 +1,7 @@
 import { escapeHtml, parseShortlist, plainText, renderInline } from './parse.js';
 
 const DATA_URL = 'restaurants.md';
-const AREA_TONES = ['lagoon', 'ahi', 'ube', 'tileaf', 'lilikoi'];
+const AREA_TONES = ['lagoon', 'ahi', 'ube', 'tileaf', 'lilikoi', 'reef', 'hibiscus', 'koa', 'slate'];
 const HIDDEN_FIELD_ROLES = new Set(['coordinates', 'sources']);
 const TILES_URL = 'tiles/oahu.pmtiles';
 const TILES_MAX_ZOOM = 15;
@@ -48,7 +48,10 @@ const state = {
 const toneFor = (place) => AREA_TONES[place.sectionIndex % AREA_TONES.length];
 const scrollBehavior = () => (reducedMotion.matches ? 'auto' : 'smooth');
 const mapFlavor = () => (darkScheme.matches ? 'dark' : 'light');
-const searchName = (place) => plainText(place.name).split(' — ')[0];
+const searchName = (place) =>
+    plainText(place.name)
+        .split(' — ')[0]
+        .replace(/\s*\([^)]*\)$/, '');
 
 function appleMapsUrl(place) {
     const query = encodeURIComponent(searchName(place));

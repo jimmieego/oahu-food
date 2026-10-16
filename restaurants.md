@@ -41,7 +41,7 @@ Places with a commenter recommendation come from replies to two Oahu trip-planni
 - **Good to know:** Open for breakfast and lunch only. Credit cards add a 3% surcharge.
 - **Sources:** [Official Ko Olina menu](https://eggsnthings.com/ko-olina-menu/) · [Walking directions from Four Seasons](https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Resort+Oahu+at+Ko+Olina&destination=Eggs+%27n+Things+Ko+Olina+92-1047+Olani+Street%2C+Kapolei%2C+HI+96707&travelmode=walking)
 
-## Kapolei and Waipahu
+## Kapolei, Ewa Beach, and Waipahu
 
 ### Foodland Kapolei
 
@@ -52,6 +52,16 @@ Places with a commenter recommendation come from replies to two Oahu trip-planni
 - **Commenter recommendation:** Three commenters recommended buying poke at Foodland. This is the Foodland closest to Ko Olina.
 - **Good to know:** Foodland Farms Ala Moana, at 1450 Ala Moana Boulevard, is the larger flagship store. The Kapolei store page does not confirm a poke counter, so check before you go.
 - **Sources:** [Official store page](https://foodland.com/stores/foodland-kapolei) · [Driving directions from Four Seasons](https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Resort+Oahu+at+Ko+Olina&destination=Foodland+Kapolei+4850+Kapolei+Parkway%2C+Building+A%2C+Kapolei%2C+HI+96707&travelmode=driving)
+
+### Haliʻa by Side Street Inn
+
+- **Address:** 91-1621 Keoneula Boulevard, Ewa Beach, HI 96706, upstairs at Wai Kai.
+- **Coordinates:** 21.30866, -158.04076
+- **Approximate travel time:** About 20 minutes driving without traffic. The route is about 9 miles.
+- **Food to consider:** Fried rice and pan-fried pork chops, the Side Street Inn signature dishes named by Honolulu Magazine.
+- **Commenter recommendation:** One commenter recommended it for local Hawaiian food. The commenter said that it is popular with local residents.
+- **Good to know:** The commenter said that most guests walk in and that waits can occur. Wai Kai recommends a reservation, on Yelp or at (808) 752-2288. Open from 4 pm on weekdays and from 11 am on weekends. Credit cards add a 3% surcharge. It is at the Wai Kai wave park in Ewa Beach, east of central Kapolei.
+- **Sources:** [Official menu](https://sidestreetinn.com/halia-menu/) · [Hours and reservations](https://sidestreetinn.com/reservations/) · [Instagram](https://www.instagram.com/halia_sidestreetinn/) · [Driving directions from Four Seasons](https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Resort+Oahu+at+Ko+Olina&destination=Halia+by+Side+Street+Inn+91-1621+Keoneula+Boulevard%2C+Ewa+Beach%2C+HI+96706&travelmode=driving)
 
 ### Highway Inn (Waipahu)
 
@@ -462,9 +472,9 @@ Places with a commenter recommendation come from replies to two Oahu trip-planni
 - **Address:** 48-140 Kamehameha Highway, Kaneohe, HI 96744.
 - **Coordinates:** 21.48204, -157.84520
 - **Approximate travel time:** About 55 minutes driving without traffic. The route is about 33 miles.
-- **Food to consider:** Sweet Lady of Waiahole: warm kulolo with haupia ice cream, the signature dessert on the official menu.
-- **Commenter recommendation:** One commenter recommended it.
-- **Good to know:** Closed Tuesday. A second counter is in the Windward Mall food court.
+- **Food to consider:** Sweet Lady of Waiahole: warm kulolo with haupia ice cream, the signature dessert on the official menu. Plates of traditional Hawaiian food, such as laulau, kalua pig, and squid luau, are also on the menu.
+- **Commenter recommendation:** Two commenters recommended it. One recommended it for traditional Hawaiian food and the Sweet Lady of Waiahole.
+- **Good to know:** Closed Tuesday. A second counter is in the Windward Mall food court. The Windward Mall counter is open every day.
 - **Sources:** [Official website](https://www.waiaholepoifactory.com) · [Driving directions from Four Seasons](https://www.google.com/maps/dir/?api=1&origin=Four+Seasons+Resort+Oahu+at+Ko+Olina&destination=Waiahole+Poi+Factory+48-140+Kamehameha+Highway%2C+Kaneohe%2C+HI+96744&travelmode=driving)
 
 ## North Shore
